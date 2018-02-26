@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="dbConnect">
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jsoncloud?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.use_sql_comments">true</property>
+  <!-- c3p0 config http://www.hibernate.org/214.html -->
+  <property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+  <property name="hibernate.c3p0.acquire_increment">1</property>
+  <property name="hibernate.c3p0.idle_test_period">100</property>
+  <property name="hibernate.c3p0.min_size">10</property>
+  <property name="hibernate.c3p0.max_size">100</property>
+  <property name="hibernate.c3p0.max_statements">0</property>
+  <property name="hibernate.c3p0.timeout">0</property>
+  <property name="hibernate.c3p0.acquireRetryAttempts">1</property>
+  <property name="hibernate.c3p0.acquireRetryDelay">250</property>
+  <property name="hibernate.transaction.coordinator_class">jdbc</property>
+  <property name="hibernate.current_session_context_class">thread</property>
+  <property name="hibernate.hbm2ddl.auto">update</property>
+  <mapping class="Models.Admins"/>
+  <mapping class="Models.Sample"/>
+ </session-factory>
+</hibernate-configuration>

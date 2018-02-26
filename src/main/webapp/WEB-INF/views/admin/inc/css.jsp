@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href=<s:url value="/resources/bower_components/bootstrap/dist/css/bootstrap.min.css"></s:url>>
+  <!-- Font Awesome -->
+
+  <link rel="stylesheet" href="  <s:url value="/resources/bower_components/font-awesome/css/font-awesome.min.css"></s:url>">
+  <!-- Ionicons -->
+    
+  <link rel="stylesheet" href="<s:url value="/resources/bower_components/Ionicons/css/ionicons.min.css"></s:url>">
+  <!-- Theme style -->
+
+  <link rel="stylesheet" href="<s:url value="/resources/dist/css/AdminLTE.min.css"></s:url>">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+         
+  <link rel="stylesheet" href="<s:url value="/resources/dist/css/skins/_all-skins.min.css"></s:url>">
+  <!-- Morris chart -->
+  
+  <link rel="stylesheet" href="<s:url value="/resources/bower_components/morris.js/morris.css"></s:url>">
+  <!-- jvectormap -->
+ 
+  <link rel="stylesheet" href=" <s:url value="/resources/bower_components/jvectormap/jquery-jvectormap.css"></s:url>">
+  <!-- Date Picker -->
+  
+  <link rel="stylesheet" href=" <s:url value="/resources/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"></s:url>">
+  <!-- Daterange picker -->
+   
+  <link rel="stylesheet" href="<s:url value="/resources/bower_components/bootstrap-daterangepicker/daterangepicker.css"></s:url>">
+  <!-- bootstrap wysihtml5 - text editor -->
+  
+  <link rel="stylesheet" href="  <s:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"></s:url>">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+    
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
