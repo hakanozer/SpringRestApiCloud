@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Panel | Yönetim Sayfası</title>
+<title>Admin Panel | Categories Page</title>
 <c:import url="/admin/css"></c:import>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -16,12 +16,12 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					Sample <small>Sample Page</small>
+					Categories
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href='<s:url value="/admin/dashboard"></s:url>'><i
 							class="fa fa-dashboard"></i> Dashboard</a></li>
-					<li class="active">Sample</li>
+					<li class="active">Categories</li>
 				</ol>
 			</section>
 			<section class="content">
@@ -56,11 +56,11 @@
 								<table class="table table-hover">
 									<tbody>
 										<tr id="rows">
-											<th style="width: 40px">sid</th>
-											<th>stitle</th>
-											<th>sdesc</th>
-											<th>ssprice</th>
-											<th style="width: 130px;">İşlem</th>
+											<th style="width: 40px">ID</th>
+											<th>Category Name</th>
+											<th>Category Desc</th>
+											<th>Category Sort No</th>
+											<th style="width: 130px;">#</th>
 										</tr>
 										
 										<c:if test="${ not empty ls }">
