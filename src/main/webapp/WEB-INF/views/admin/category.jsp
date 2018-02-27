@@ -66,13 +66,13 @@
 										<c:if test="${ not empty ls }">
 										
 											<c:forEach items="${ ls }" var="item">
-												<tr id="${ item.getSid() }" role="sil">
-													<td>${ item.getSid() }</td>
-													<td>${ item.getStitle() }</td>
-													<td>${ item.getSdesc()}</td>
+												<tr id="${ item.getCategoryid() }" role="sil">
+													<td>${ item.getCategoryid() }</td>
+													<td>${ item.getCategorytitle()() }</td>
+													<td>${ item.getCategorydescription()}</td>
 													<td><span class="label label-success">Approved</span></td>
 													<td>
-														<button onclick="fncDelete(${ item.getSid() }, 'sid' ,'sample')" type="button" class="btn btn-danger btn-sm">Sil</button>
+														<button onclick="fncDelete(${ item.getCategoryid() }, 'Categoryid' ,'Category')" type="button" class="btn btn-danger btn-sm">Sil</button>
 														<button type="button" class="btn btn-primary btn-sm">Düzenle</button>
 													</td>
 												</tr>
