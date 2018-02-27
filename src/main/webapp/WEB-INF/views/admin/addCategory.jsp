@@ -96,7 +96,7 @@
 								<!-- /.box-body -->
 								<div class="box-footer">
 									<button type="reset" class="btn btn-default">Reset</button>
-									<button type="submit" class="btn btn-info pull-right">Save
+									<button type="submit" class="btn btn-info pull-right" id="#btnadd">Save
 									</button>
 								</div>
 								<!-- /.box-footer -->
