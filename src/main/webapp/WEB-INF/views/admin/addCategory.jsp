@@ -46,7 +46,7 @@
 
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="categoryTitle" class="col-sm-2 control-label">Category
+											<label for="categoryTitle" class="col-sm-2 control-label" style="text-align: center">Category
 												Name</label>
 
 											<div class="col-sm-10">
@@ -55,48 +55,41 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="categoryDescription" class="col-sm-2 control-label">Category
-												Description</label>
+											<label for="categoryDescription"
+												class="col-sm-2 control-label">Category Description</label>
 
 											<div class="col-sm-10">
-												<input type="text" class="form-control" id="categoryDescription"
+												<input type="text" class="form-control"
+													id="categoryDescription"
 													placeholder="Please enter a description about your category">
 											</div>
 										</div>
 
 									</div>
-
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-
+											<label for="categoryparentid" class="col-sm-2 control-label" style="text-align: center">Category Parent</label> 
 											<div class="col-sm-10">
-												<input type="email" class="form-control" id="inputEmail3"
-													placeholder="Email">
+											<select
+												class="form-control" id="categoryparentid">
+												
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												</select>
 											</div>
+												
 										</div>
 										<div class="form-group">
-											<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+											<label for="categorySort" class="col-sm-2 control-label" style="text-align: center" >Category
+												Sort</label>
 
 											<div class="col-sm-10">
-												<input type="password" class="form-control"
-													id="inputPassword3" placeholder="Password">
+												<input type="text" class="form-control" id="categorySort"
+													placeholder="Please enter a category sort">
 											</div>
 										</div>
-									</div>
-
-									<div class="col-md-12">
-										<div class="form-group">
-
-											<label for="inputPassword3" class="col-sm-1 control-label">Detail</label>
-											<div class="col-sm-11">
-												<textarea id="editor1" name="editor1" rows="10" cols="80">
-                                            This is my textarea to be replaced with CKEditor.
-                    </textarea>
-											</div>
-										</div>
-
-
 									</div>
 
 								</div>

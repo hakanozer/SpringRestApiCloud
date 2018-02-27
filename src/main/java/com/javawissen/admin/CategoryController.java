@@ -15,4 +15,9 @@ public class CategoryController {
 		
 		return "admin/category";
 	}
+	@RequestMapping (value="/addCategory",method = RequestMethod.GET)
+	public String addCategory() {
+		
+		return "admin/addCategory";
+	}
 }
