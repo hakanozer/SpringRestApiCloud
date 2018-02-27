@@ -11,7 +11,7 @@ public class DB {
     final private String driver = "com.mysql.jdbc.Driver";
     final private String url = "jdbc:mysql://localhost/";
     final private String endCode = "?useUnicode=true&characterEncoding=utf-8";
-    private String dbName = "mvc";
+    private String dbName = "jsoncloud";
     private String dbUser = "root";
     private String dbPassword = "";
 
