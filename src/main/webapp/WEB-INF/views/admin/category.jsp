@@ -28,7 +28,7 @@
 				<div class="row">
 
 					<div class="col-xs-12">
-						<a href='<s:url value="/admin/sampleAdd"></s:url>' class="btn btn-app pull-right"> <i class="fa fa-plus"></i>
+						<a href='<s:url value="/admin/addCategory"></s:url>' class="btn btn-app pull-right"> <i class="fa fa-plus"></i>
 							Add
 						</a>
 					</div>
