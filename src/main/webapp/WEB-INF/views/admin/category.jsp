@@ -106,6 +106,6 @@
 		<c:import url="/admin/sidebar"></c:import>
 	</div>
 	<c:import url="/admin/js"></c:import>
-	<script src='<s:url value="/resources/adminJS/Sample.js"></s:url>'></script>
+	<script src='<s:url value="/resources/adminJS/Category.js"></s:url>'></script>
 </body>
 </html>

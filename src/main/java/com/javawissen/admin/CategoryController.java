@@ -30,10 +30,11 @@ public class CategoryController {
 	public String category(HttpServletRequest req, Model model) {
 		Session sesi = sf.openSession();
 		@SuppressWarnings("unchecked")
-		List<Category> ls = sesi.createQuery("from Category order by categorysort desc").setMaxResults(10).list();
+		List<Category> ls = sesi.createQuery("from Category").list();
+		
 		model.addAttribute("ls", ls);
 		sesi.close();
-		return Utils.loginControl(req, "admin/category");
+		return  Utils.loginControl(req, "admin/category");
 	}
 	// ajaxCategoryPage
 	@ResponseBody
@@ -42,7 +43,7 @@ public class CategoryController {
 		Session sesi = sf.openSession();
 		StringBuilder bl = new StringBuilder();
 		@SuppressWarnings("unchecked")
-		List<Category> ls = sesi.createQuery("from Category order by sid desc").setFirstResult((itemCount -1)  * 10)
+		List<Category> ls = sesi.createQuery("from category").setFirstResult((itemCount -1)  * 10)
 				.setMaxResults(10).list();
 		for (Category item : ls) {
 			String rw = "<tr  role=\"sil\" id=\""+item.getCategoryid()+"\">\r\n" + 
