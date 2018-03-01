@@ -3,5 +3,7 @@
 	<persistence-unit name="JsonCloud">
 		<class>Models.Admins</class>
 		<class>Models.Sample</class>
+		<class>Models.Products</class>
+		<class>Models.Category</class>
 	</persistence-unit>
 </persistence>

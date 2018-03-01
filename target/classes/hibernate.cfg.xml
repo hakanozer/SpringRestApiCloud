@@ -24,5 +24,7 @@
   <property name="hibernate.hbm2ddl.auto">update</property>
   <mapping class="Models.Admins"/>
   <mapping class="Models.Sample"/>
+  <mapping class="Models.Products"/>
+  <mapping class="Models.Category"/>
  </session-factory>
 </hibernate-configuration>
