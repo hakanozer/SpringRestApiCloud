@@ -1,29 +1,26 @@
 //ajax kategori ekleme
-$;(document).ready(function(){
-	$('#btnadd').click (function(){
-		var categorytitle=$('#categoryTitle').val();
+$(document).ready(function() {
+	$('#btnadd').click(function() {
+
+		var categorytitle = $('#categoryTitle').val();
+		var categoryparentid = $('#categoryparentid').val();
 		
-		$.ajax ({
-			url : '/admin/addCategory',
+		alert(categorytitle);
+		alert(categoryparentid);
+		
+		$.ajax({
+			url : '/jsoncloud/admin/addingCategory',
 			type : 'POST',
-			data : { 'categoryTitle' : categorytitle},
-			
-			success: function(row){
-				if(row==""){
+			data : {'categorytitle' : categorytitle, 'categoryparentid' : categoryparentid},
+			success : function(data) {
+				if (data == "") {
 					alert("Category adding failed!");
-				}else{
-					
-					$('#pcid').append(row);
-					$('#cname').val('');
-					$('#cname').focus();
+				} else {
+					alert("Category adding succes!");
+					$('#categoryparentid').append(data);
 				}
-				
 			}
-			
-		})
-		
-		
-	})
-	
-})
+		});
+	});
+});
 

@@ -35,13 +35,15 @@
 
 
 					<div class="col-md-12">
+				
 						<div class="box box-info">
 							<div class="box-header with-border">
 								<h3 class="box-title">Category Add Form</h3>
 							</div>
 							<!-- /.box-header -->
 							<!-- form start -->
-							<form class="form-horizontal">
+						
+							<div class="form-horizontal" >
 								<div class="box-body">
 
 									<div class="col-md-6">
@@ -50,7 +52,7 @@
 												Name</label>
 
 											<div class="col-sm-10">
-												<input type="text" class="form-control" id="categoryTitle"
+												<input type="text" class="form-control" name="categorytitle"  id="categoryTitle"
 													placeholder="Please enter a category name">
 											</div>
 										</div>
@@ -59,7 +61,7 @@
 												class="col-sm-2 control-label">Category Description</label>
 
 											<div class="col-sm-10">
-												<input type="text" class="form-control"
+												<input type="text" class="form-control" name="categorydescription"
 													id="categoryDescription"
 													placeholder="Please enter a description about your category">
 											</div>
@@ -70,14 +72,17 @@
 										<div class="form-group">
 											<label for="categoryparentid" class="col-sm-2 control-label" style="text-align: center">Category Parent</label> 
 											<div class="col-sm-10">
-											<select
-												class="form-control" id="categoryparentid">
+										 <c:if test="${ not empty showCategory }">
+											<select	class="form-control" id="categoryparentid" name="categoryparentid">
+												<option value="0" > Main Category</option>
+												<c:forEach var="item" items="${ showCategory }">
 												
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
+												<option value="${ item.getCategoryid() }">${ item.getCategorytitle() }</option>
+												
+												</c:forEach>
+												
 												</select>
+											</c:if>
 											</div>
 												
 										</div>
@@ -86,7 +91,7 @@
 												Sort</label>
 
 											<div class="col-sm-10">
-												<input type="text" class="form-control" id="categorySort"
+												<input type="number" class="form-control" name="categorysort" id="categorySort"
 													placeholder="Please enter a category sort">
 											</div>
 										</div>
@@ -96,11 +101,12 @@
 								<!-- /.box-body -->
 								<div class="box-footer">
 									<button type="reset" class="btn btn-default">Reset</button>
-									<button type="submit" class="btn btn-info pull-right" id="#btnadd">Save
-									</button>
+									<%-- <input type="submit" class="form-control" value="Save" />--%>
+									<button  class="btn btn-info pull-right" id="btnadd">Save
+									</button> 
 								</div>
 								<!-- /.box-footer -->
-							</form>
+							</div>
 						</div>
 
 					</div>
@@ -114,7 +120,7 @@
 		<c:import url="/admin/sidebar"></c:import>
 	</div>
 	<c:import url="/admin/js"></c:import>
-	<script src='<s:url value="/resources/adminJS/Sample.js"></s:url>'></script>
+	<script src='<s:url value="/resources/adminJS/Category.js"></s:url>'></script>
 </body>
 </html>
 
