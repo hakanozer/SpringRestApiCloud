@@ -68,4 +68,34 @@ $.ajax({
 });
 }
 
+function productinsert() {
+	
+	var baslik =   $('#producttitle').val();
+	var kategori = $('#productcategoryid').val();
+	var aciklama = $('#productDescription').val();
+	var fiyat =    $('#productprice').val();
+	var tip =      $('#producttype').val();
+	var kampanya = $('#ProductCampaigne').val();
+	var detay =    CKEDITOR.instances.editor1.getData();
+
+	$.ajax({
+		url : '/jsoncloud/admin/productInsert',
+		type: 'post',
+		data: {'producttitle': baslik,
+			'productcategoryid': kategori.toString(),
+			'productdescription': aciklama,
+			'productprice': fiyat,
+			'producttype': tip,
+			'ProductCampaigne': kampanya,
+			'productdetail': detay},
+		success : function(data) {
+			if (data == "") {
+				alert("Data Getirmede hata oluştu !");
+			}else {
+				alert("kayit basarili")
+			}
+		}
+	});
+}
+
 

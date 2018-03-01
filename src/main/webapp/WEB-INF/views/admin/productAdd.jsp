@@ -41,7 +41,7 @@
 							</div>
 							<!-- /.box-header -->
 							<!-- form start -->
-							<form class="form-horizontal">
+							<form class="form-horizontal" method="POST" action='<s:url value=""></s:url>'>
 								<div class="box-body">
 
 
@@ -51,12 +51,12 @@
 												<label>Category</label>
 											</div>
 											<div class="col-sm-10">
-												<select name="productcategoryid" id="productcategoryid" value="${item.getCategoryid() }" class="form-control select2" multiple="multiple"
+												<select name="productcategoryid"  id="productcategoryid" class="form-control select2" multiple="multiple"
 													data-placeholder="Select a State" style="width: 100%;">
 													<c:if test="${ not empty lc }">
 
 														<c:forEach items="${ lc }" var="item">
-															<option>${item.getCategorytitle() }</option>
+															<option value="${ item.getCategoryid() }">${item.getCategorytitle() }</option>
 														</c:forEach>
 
 													</c:if>
@@ -92,7 +92,7 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="productName" class="col-sm-2 control-label">Name</label>
+											<label for="producttitle" class="col-sm-2 control-label">Name</label>
 
 											<div class="col-sm-10">
 												<input type="text" class="form-control" name="producttitle" id="producttitle"
@@ -101,7 +101,7 @@
 										</div>
 
 										<div class="form-group">
-											<label for="productPrice" class="col-sm-2 control-label">Price</label>
+											<label for="productprice" class="col-sm-2 control-label">Price</label>
 
 											<div class="col-sm-10">
 												<input type="text" class="form-control" name="productprice" id="productprice"
@@ -115,20 +115,14 @@
 												<select class="col-sm-10 form-control" name="productcampaignid"
 													id="ProductCampaigne">
 
-													<option>Hayır</option>
-													<option>Evet</option>
+													<option value="hayir">Hayır</option>
+													<option value="evet">Evet</option>
 
 												</select>
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="campaigneName" class="col-sm-2 control-label">Campaigne
-												Name</label>
-
-											<div class="col-sm-10">
-												<input type="text" class="form-control" id="campaigneName"
-													placeholder="Campaigne Name">
-											</div>
+					
 										</div>
 									</div>
 
@@ -152,8 +146,7 @@
 								<!-- /.box-body -->
 								<div class="box-footer">
 									<button type="reset" class="btn btn-default">Reset</button>
-										<a href='<s:url value="/sinavduzenle"></s:url>'
-						class="btn btn-info pull-right" role="button" aria-disabled="true">Save</a>
+									<button type="button" onclick="productinsert()" class="btn btn-info pull-right">Save</button>	
 								</div>
 								<!-- /.box-footer -->
 							</form>
