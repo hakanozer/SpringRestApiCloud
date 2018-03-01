@@ -35,7 +35,7 @@ public class SampleController {
 	}
 
 	// ajaxSamplePage
-	@ResponseBody
+/*	@ResponseBody
 	@RequestMapping(value = "/ajaxSamplePage", method = RequestMethod.POST)
 	public String ajaxSamplePage(@RequestParam int itemCount) {
 		Session sesi = sf.openSession();
@@ -73,7 +73,7 @@ public class SampleController {
 			}
 			return bl.toString();
 		}
-
+*/
 		// Sample Add
 		@RequestMapping(value = "/sampleAdd", method = RequestMethod.GET)
 		public String sampleAdd() {
