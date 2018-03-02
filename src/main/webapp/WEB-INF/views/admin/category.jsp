@@ -58,22 +58,22 @@
 										<tr id="rows">
 											<th style="width: 40px">ID</th>
 											<th>Category Name</th>
-											<th>Category Desc</th>
+											<th>Category Description</th>
 											<th>Category Sort No</th>
 											<th style="width: 130px;">#</th>
 										</tr>
 										
-										<c:if test="${ not empty ls }">
+										<c:if test="${ not empty newls }">
 										
-											<c:forEach items="${ ls }" var="item">
-												<tr id="${ item.getCategoryid() }" role="sil">
+											<c:forEach items="${ newls }" var="item">
+												<tr id="${ item.getCategoryid() }"  role="sil" <c:if test="${ item.getCategoryparentid() == 0 }">style=" background-color: gainsboro; "</c:if> >
 													<td>${ item.getCategoryid() }</td>
-													<td>${ item.getCategorytitle()() }</td>
+													<td>${ item.getCategorytitle() }</td>
 													<td>${ item.getCategorydescription()}</td>
-													<td><span class="label label-success">Approved</span></td>
+													<td>${ item.getCategorysort()}</td>
 													<td>
-														<button onclick="fncDelete(${ item.getCategoryid() }, 'Categoryid' ,'Category')" type="button" class="btn btn-danger btn-sm">Sil</button>
-														<button type="button" class="btn btn-primary btn-sm">Düzenle</button>
+														<button onclick="fncDelete(${ item.getCategoryid() }, 'categoryid' ,'category')" type="button" class="btn btn-danger btn-sm">Delete</button>
+														<a href='<s:url value="edit/${ item.getCategoryid() }"></s:url>'  class="btn btn-primary btn-sm" role="button">Edit</a>
 													</td>
 												</tr>
 											</c:forEach>
@@ -91,7 +91,7 @@
 								</ul>
 							</div>
 
-							<c:if test="${ empty ls }">
+							<c:if test="${ empty newls }">
 									<div style="text-align: center; padding: 10px;">Burada Data Yok !</div>
 							</c:if>
 						</div>

@@ -62,7 +62,7 @@
 
 											<div class="col-sm-10">
 												<input type="text" class="form-control" name="categorydescription"
-													id="categoryDescription"
+													id="categorydescription"
 													placeholder="Please enter a description about your category">
 											</div>
 										</div>
@@ -91,7 +91,7 @@
 												Sort</label>
 
 											<div class="col-sm-10">
-												<input type="number" class="form-control" name="categorysort" id="categorySort"
+												<input type="number" class="form-control" name="categorysort" id="categorysort"
 													placeholder="Please enter a category sort">
 											</div>
 										</div>

@@ -29,19 +29,40 @@ public class CategoryController {
 	// Zeki, Sema
 	
 	SessionFactory sf=HibernateUtil.getSessionFactory();
-	@RequestMapping (value="/category",method = RequestMethod.GET)
-	public String category() {
-		
-		
-		return "admin/category";
+	//kategori listeleme
+	@RequestMapping(value = "/category", method = RequestMethod.GET)
+	public String categoryList(HttpServletRequest req, Model model) {
+		Session sesi = sf.openSession();
+		@SuppressWarnings("unchecked")
+		List<Category> Cls = sesi.createQuery("from Category where categorycompanyid = :catid").setParameter("catid", 15)
+				.list();
+		List<Category> ls = new ArrayList<Category>();
+		sesi.close();
+		for (Category item : Cls) {
+			if (item.getCategoryparentid() == 0) {
+				ls.add(item);
+				for (Category itemx : Cls) {
+					if(itemx.getCategoryparentid() != 0 && itemx.getCategoryparentid() == item.getCategoryid()) {
+						ls.add(itemx);
+					}
+				}
+			}
+		}
+
+	
+
+	model.addAttribute("newls",ls);
+
+	return Utils.loginControl(req,"admin/category");
+
 	}
+	
 	
 	@RequestMapping (value="/addCategory",method = RequestMethod.GET)
 	public String categoryadd(Model model) {
 		
 		List<Category>showCategory=fillCategoryDropdown();
 		model.addAttribute("showCategory", showCategory);
-		System.out.println("kategoriler doldu");
 		return "admin/addCategory";
 	}
 	
@@ -74,7 +95,6 @@ public class CategoryController {
 	public String categoryLinkEdit(String data) {
 		
 		String categoryLink = data.replace(" ", "-");
-		System.out.println("link " +categoryLink);
 		return categoryLink;
 	}
 	//dropdown menü doldurma
@@ -83,9 +103,20 @@ public class CategoryController {
 		List<Category>ls=new ArrayList<Category>();
 		Session sesi=sf.openSession();
 		ls=sesi.createQuery("from Category").list();
-		System.out.println("ls doldu");
 		sesi.close();
 		return ls;
+	}
+	//düzenleme
+	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
+	public String editRow(@PathVariable Integer id , Model model) {
+		Session sesi = sf.openSession();
+		Transaction tr = sesi.beginTransaction();
+		Category kl = (Category) sesi.createQuery("from Category where categoryid = '"+id+"'").list().get(0);
+		tr.commit();
+		sesi.close();
+		System.out.println("id : " + kl.getCategoryid());
+		model.addAttribute("kl", kl);
+		return "admin/addCategory";
 	}
 	
 }
