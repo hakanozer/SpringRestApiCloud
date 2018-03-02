@@ -24,6 +24,16 @@ public class Admins implements Serializable {
 	private String apassword;
 
 	private String asurname;
+	
+	private String acompanyid;
+
+	public String getAcompanyid() {
+		return acompanyid;
+	}
+
+	public void setAcompanyid(String acompanyid) {
+		this.acompanyid = acompanyid;
+	}
 
 	@Column(name="remember_me")
 	private String rememberMe;

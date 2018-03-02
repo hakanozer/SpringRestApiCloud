@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mchange.v2.cfg.PropertiesConfigSource.Parse;
 
+import Models.Admins;
 import Models.Category;
 import Utils.HibernateUtil;
 import Utils.Utils;
@@ -31,11 +33,16 @@ public class CategoryController {
 	SessionFactory sf=HibernateUtil.getSessionFactory();
 	//kategori listeleme
 	@RequestMapping(value = "/category", method = RequestMethod.GET)
-	public String categoryList(HttpServletRequest req, Model model) {
+	public String categoryList(HttpServletRequest req, Model model, Admins adm) {
 		Session sesi = sf.openSession();
+		req.getSession().getAttribute("kid");
+		Admins admin = (Admins) sesi.createQuery("from Admins a where a.aid = :kid").
+				setParameter("kid",req.getSession().getAttribute("kid") ).getSingleResult();
+		
 		@SuppressWarnings("unchecked")
-		List<Category> Cls = sesi.createQuery("from Category where categorycompanyid = :catid").setParameter("catid", 15)
+		List<Category> Cls = sesi.createQuery("from Category where categorycompanyid = :catid").setParameter("catid",Integer.parseInt(admin.getAcompanyid())  )
 				.list();
+		
 		List<Category> ls = new ArrayList<Category>();
 		sesi.close();
 		for (Category item : Cls) {
@@ -75,7 +82,11 @@ public class CategoryController {
 			Session sesi = sf.openSession();
 			
 			Transaction tr = sesi.beginTransaction();
-			ct.setCategorycompanyid(12);//session dan alýnacak.req.getsession.getattribute bu kodla
+			req.getSession().getAttribute("kid");
+			Admins admin = (Admins) sesi.createQuery("from Admins a where a.aid = :kid").
+					setParameter("kid",req.getSession().getAttribute("kid") ).getSingleResult();
+			
+			ct.setCategorycompanyid( Integer.parseInt(admin.getAcompanyid()) );//session dan alýnacak.req.getsession.getattribute bu kodla
 			ct.setCategorylink(categoryLinkEdit(ct.getCategorytitle()));
 			if (ct.getCategoryparentid() == 0) {
 				ct.setCategoryparentid(0);
@@ -114,7 +125,9 @@ public class CategoryController {
 		Category kl = (Category) sesi.createQuery("from Category where categoryid = '"+id+"'").list().get(0);
 		tr.commit();
 		sesi.close();
-		System.out.println("id : " + kl.getCategoryid());
+		List<Category>showCategory=fillCategoryDropdown();
+		model.addAttribute("showCategory", showCategory);
+		
 		model.addAttribute("kl", kl);
 		return "admin/addCategory";
 	}

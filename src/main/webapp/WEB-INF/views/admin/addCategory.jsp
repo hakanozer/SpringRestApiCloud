@@ -35,89 +35,158 @@
 
 
 					<div class="col-md-12">
-				
+
 						<div class="box box-info">
 							<div class="box-header with-border">
 								<h3 class="box-title">Category Add Form</h3>
 							</div>
 							<!-- /.box-header -->
 							<!-- form start -->
-						
-							<div class="form-horizontal" >
-								<div class="box-body">
+							<c:if test="${ not empty kl }">
+								<div class="form-horizontal">
+									<div class="box-body">
 
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="categoryTitle" class="col-sm-2 control-label" style="text-align: center">Category
-												Name</label>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="categoryTitle" class="col-sm-2 control-label"
+													style="text-align: center">Category Name</label>
 
-											<div class="col-sm-10">
-												<input type="text" class="form-control" name="categorytitle"  id="categoryTitle"
-													placeholder="Please enter a category name">
+												<div class="col-sm-10">
+													<input type="text" class="form-control"
+														name="categorytitle" id="categoryTitle" value=" ${ kl.getCategorytitle() } "
+														placeholder="Please enter a category name">
+												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<label for="categoryDescription"
-												class="col-sm-2 control-label">Category Description</label>
+											<div class="form-group">
+												<label for="categoryDescription"
+													class="col-sm-2 control-label">Category Description</label>
 
-											<div class="col-sm-10">
-												<input type="text" class="form-control" name="categorydescription"
-													id="categorydescription"
-													placeholder="Please enter a description about your category">
+												<div class="col-sm-10">
+													<input type="text" class="form-control"
+														name="categorydescription" id="categorydescription" value=" ${ kl.getCategorydescription() } "
+														placeholder="Please enter a description about your category">
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="categoryparentid" class="col-sm-2 control-label"
+													style="text-align: center">Category Parent</label>
+												<div class="col-sm-10">
+													<c:if test="${ not empty showCategory }">
+														<select class="form-control" id="categoryparentid"
+															name="categoryparentid">
+															
+															<option value="0">Main Category</option>
+															<c:forEach var="item" items="${ showCategory }">
+																<c:if test="${ kl.getCategoryparentid() == item.getCategoryid() }"><option value="${ kl.getCategoryid() }" selected>${ kl.getCategorytitle() }</option></c:if>
+																
+																
+
+															</c:forEach>
+
+														</select>
+													</c:if>
+												</div>
+
+
+											</div>
+											<div class="form-group">
+												<label for="categorySort" class="col-sm-2 control-label" 
+													style="text-align: center">Category Sort</label>
+
+												<div class="col-sm-10">
+													<input type="text" class="form-control" value=" ${ kl.getCategorysort() } "
+														name="categorysort" id="categorysort"
+														placeholder="Please enter a category sort">
+												</div>
 											</div>
 										</div>
 
 									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="categoryparentid" class="col-sm-2 control-label" style="text-align: center">Category Parent</label> 
-											<div class="col-sm-10">
-										 <c:if test="${ not empty showCategory }">
-											<select	class="form-control" id="categoryparentid" name="categoryparentid">
-												<option value="0" > Main Category</option>
-												<c:forEach var="item" items="${ showCategory }">
-												
-												<option value="${ item.getCategoryid() }">${ item.getCategorytitle() }</option>
-												
-												</c:forEach>
-												
-												</select>
-											</c:if>
-											</div>
-												
-										</div>
-										<div class="form-group">
-											<label for="categorySort" class="col-sm-2 control-label" style="text-align: center" >Category
-												Sort</label>
+							</c:if>
+							<c:if test="${ empty kl }">
+								<div class="form-horizontal">
+									<div class="box-body">
 
-											<div class="col-sm-10">
-												<input type="number" class="form-control" name="categorysort" id="categorysort"
-													placeholder="Please enter a category sort">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="categoryTitle" class="col-sm-2 control-label"
+													style="text-align: center">Category Name</label>
+
+												<div class="col-sm-10">
+													<input type="text" class="form-control"
+														name="categorytitle" id="categoryTitle"
+														placeholder="Please enter a category name">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="categoryDescription"
+													class="col-sm-2 control-label">Category Description</label>
+
+												<div class="col-sm-10">
+													<input type="text" class="form-control"
+														name="categorydescription" id="categorydescription"
+														placeholder="Please enter a description about your category">
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="categoryparentid" class="col-sm-2 control-label"
+													style="text-align: center">Category Parent</label>
+												<div class="col-sm-10">
+													<c:if test="${ not empty showCategory }">
+														<select class="form-control" id="categoryparentid"
+															name="categoryparentid">
+															<option value="0">Main Category</option>
+															<c:forEach var="item" items="${ showCategory }">
+
+																<option value="${ item.getCategoryid() }">${ item.getCategorytitle() }</option>
+
+															</c:forEach>
+
+														</select>
+													</c:if>
+												</div>
+
+
+											</div>
+											<div class="form-group">
+												<label for="categorySort" class="col-sm-2 control-label"
+													style="text-align: center">Category Sort</label>
+
+												<div class="col-sm-10">
+													<input type="number" class="form-control"
+														name="categorysort" id="categorysort"
+														placeholder="Please enter a category sort">
+												</div>
 											</div>
 										</div>
+
 									</div>
-
-								</div>
-								<!-- /.box-body -->
-								<div class="box-footer">
-									<button type="reset" class="btn btn-default">Reset</button>
-									<%-- <input type="submit" class="form-control" value="Save" />--%>
-									<button  class="btn btn-info pull-right" id="btnadd">Save
-									</button> 
-								</div>
-								<!-- /.box-footer -->
+							</c:if>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<button type="reset" class="btn btn-default">Reset</button>
+								<%-- <input type="submit" class="form-control" value="Save" />--%>
+								<button class="btn btn-info pull-right" id="btnadd">Save
+								</button>
 							</div>
+							<!-- /.box-footer -->
 						</div>
-
 					</div>
 
 				</div>
-
-
-			</section>
 		</div>
-		<c:import url="/admin/footer"></c:import>
-		<c:import url="/admin/sidebar"></c:import>
+
+
+		</section>
+	</div>
+	<c:import url="/admin/footer"></c:import>
+	<c:import url="/admin/sidebar"></c:import>
 	</div>
 	<c:import url="/admin/js"></c:import>
 	<script src='<s:url value="/resources/adminJS/Category.js"></s:url>'></script>
