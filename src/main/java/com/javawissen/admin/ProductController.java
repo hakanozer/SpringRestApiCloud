@@ -1,5 +1,6 @@
 package com.javawissen.admin;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,12 +10,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import Models.Campaigns;
 import Models.Category;
 import Models.Products;
 import Models.Sample;
@@ -31,6 +34,8 @@ public class ProductController {
 
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public String ornekAc(HttpServletRequest req, Model model) {
+		String companyid=(String) req.getSession().getAttribute("companyid");
+		System.out.println(companyid);
 		Session sesi = sf.openSession();
 		@SuppressWarnings("unchecked")
 		List<Products> ls = sesi.createQuery("from Products order by productid desc").setMaxResults(10).list();
@@ -146,7 +151,9 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/productAdd", method = RequestMethod.GET)
-	public String productAdd(Model model) {
+	public String productAdd(HttpServletRequest req,Model model) {
+		String companyid=(String) req.getSession().getAttribute("companyid");
+		System.out.println(companyid);
 		Session sesi = sf.openSession();
 		System.out.println("burda");
 		@SuppressWarnings("unchecked")
@@ -156,6 +163,15 @@ public class ProductController {
 
 		sesi.close();
 
+		Session sesii = sf.openSession();
+		System.out.println("burda");
+		@SuppressWarnings("unchecked")
+		List<Campaigns> lcampaign = sesii.createQuery("from Campaigns where campaigncompanyid=1").list();
+		// model.addAttribute("pageCount", Utils.rowCount("Sample"));
+		model.addAttribute("lcampaign", lcampaign);
+
+		sesii.close();
+		
 		return "admin/productAdd";
 	}
 
@@ -165,6 +181,7 @@ public class ProductController {
 		
 	
 		System.out.println("insert iþlemi");
+		System.out.println("kampanya id"+prd.getProductcampaignid());
 		Session sesi = sf.openSession();
 		Transaction tr = sesi.beginTransaction();
 		// int yaz=(Integer) sesi.save(prd);
@@ -178,4 +195,46 @@ public class ProductController {
 			return "";
 		}
 	}
+	
+	
+	@RequestMapping(value = "/productUpdate/{proid}", method = RequestMethod.GET)
+	public String productUpdateGET(@PathVariable Integer proid, Model model ) {
+		Session sesi = sf.openSession();
+		List<Products> ls = sesi.createQuery("from Products where productid= "+proid+" ").list();
+        sesi.close();
+        String dd=ls.get(0).getProductcategoryid().replaceAll(",", "");
+        
+		Session sesii = sf.openSession();
+		@SuppressWarnings("unchecked")
+		List<Category> lc = sesii.createQuery("from Category where categorycompanyid=1").list();
+		// model.addAttribute("pageCount", Utils.rowCount("Sample"));
+		model.addAttribute("lc", lc);
+        sesii.close();
+        
+        Session sesiii = sf.openSession();
+		System.out.println("burda");
+		@SuppressWarnings("unchecked")
+		List<Campaigns> lcampaign = sesiii.createQuery("from Campaigns where campaigncompanyid=1").list();
+		// model.addAttribute("pageCount", Utils.rowCount("Sample"));
+		model.addAttribute("lcampaign", lcampaign);
+
+		sesiii.close();
+		
+        model.addAttribute("ls", ls);
+		model.addAttribute("lcat", dd.toCharArray());
+	  
+		
+		return "admin/productUpdate";
+	}
+	
+	
+	@RequestMapping(value = "/productUpdate", method = RequestMethod.POST)
+	public String productUpdate(Products p) {
+		
+		
+		
+		return "redirect:/admin/productUpdate";
+	}
+	
+	
 }

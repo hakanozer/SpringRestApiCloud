@@ -16,12 +16,12 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					Product <small>Product Page Add</small>
+					Product <small>Product Page Update</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href='<s:url value="/admin/dashboard"></s:url>'><i
 							class="fa fa-dashboard"></i> Dashboard</a></li>
-					<li class="active">Product Add</li>
+					<li class="active">Product Update</li>
 				</ol>
 			</section>
 			<section class="content">
@@ -37,11 +37,14 @@
 					<div class="col-md-12">
 						<div class="box box-info">
 							<div class="box-header with-border">
-								<h3 class="box-title">Product Add Form</h3>
+								<h3 class="box-title">Product Update Form</h3>
 							</div>
 							<!-- /.box-header -->
 							<!-- form start -->
-							<form class="form-horizontal" method="POST" action='<s:url value=""></s:url>'>
+							<form class="form-horizontal" method="POST" action='<s:url value="/admin/productUpdate"></s:url>'>
+										<c:if test="${ not empty ls }">
+
+									<c:forEach items="${ ls }" var="item2">
 								<div class="box-body">
 
 
@@ -53,14 +56,26 @@
 											<div class="col-sm-10">
 												<select name="productcategoryid"  id="productcategoryid" class="form-control select2" multiple="multiple"
 													data-placeholder="Select a State" style="width: 100%;">
+													
+													
+													
 													<c:if test="${ not empty lc }">
 
 														<c:forEach items="${ lc }" var="item">
+														<c:forEach items="${ lcat }" var="kat">
+														<c:if test="${item.getCategoryid() == kat }">
+															<option selected="selected" value="${ item.getCategoryid() }">${item.getCategorytitle() }</option>
+															
+														</c:if>
+														<c:if test="${item.getCategoryid() != kat }">
 															<option value="${ item.getCategoryid() }">${item.getCategorytitle() }</option>
+															
+														</c:if>
+														</c:forEach>
 														</c:forEach>
 
 													</c:if>
-
+                                                     
 												</select>
 											</div>
 										</div>
@@ -69,7 +84,7 @@
 												class="col-sm-2 control-label">Description</label>
 
 											<div class="col-sm-10">
-												<input type="text" class="form-control"
+												<input  value="${item2.getProductdescription() }" type="text" class="form-control"
 													name="productdescription" id="productDescription" placeholder="Description">
 											</div>
 										</div>
@@ -79,10 +94,10 @@
 											<div class="col-sm-10">
 												<select class="col-sm-10 form-control" name="producttype"
 													id="producttype">
-
+                                                     <option selected>${item2.getProducttype() }</option>
 													<option>Satılık</option>
 													<option>Kiralık</option>
-                                                     
+
 
 												</select>
 											</div>
@@ -95,7 +110,7 @@
 											<label for="producttitle" class="col-sm-2 control-label">Name</label>
 
 											<div class="col-sm-10">
-												<input type="text" class="form-control" name="producttitle" id="producttitle"
+												<input value="${item2.getProducttitle() }" type="text" class="form-control" name="producttitle" id="producttitle"
 													placeholder="Product Name">
 											</div>
 										</div>
@@ -104,7 +119,7 @@
 											<label for="productprice" class="col-sm-2 control-label">Price</label>
 
 											<div class="col-sm-10">
-												<input type="text" class="form-control" name="productprice" id="productprice"
+												<input value="${item2.getProductprice() }" type="text" class="form-control" name="productprice" id="productprice"
 													placeholder="Price">
 											</div>
 										</div>
@@ -114,14 +129,17 @@
 											<div class="col-sm-10">
 												<select class="col-sm-10 form-control" name="productcampaignid"
 													id="productcampaignid">
-                                               		<c:if test="${ not empty lcampaign }">
+                                                   
+													     <c:if test="${ not empty lcampaign }">
 
 														<c:forEach items="${ lcampaign }" var="item">
+													
 													<option value="${item.getCampaignid() }">${item.getCampaigntitle() }</option>
 								
                                                  </c:forEach>
 
 													</c:if>
+
 												</select>
 											</div>
 										</div>
@@ -137,8 +155,8 @@
 
 											<label for="inputPassword3" class="col-sm-1 control-label">Detail</label>
 											<div class="col-sm-11">
-												<textarea id="editor1" name="editor1" rows="10" cols="80">
-
+												<textarea value="" id="editor1" name="editor1" rows="10" cols="80">
+                                                ${item2.getProductdetail() }
                     </textarea>
 											</div>
 										</div>
@@ -150,9 +168,12 @@
 								<!-- /.box-body -->
 								<div class="box-footer">
 									<button type="reset" class="btn btn-default">Reset</button>
-									<button type="button" onclick="productinsert()" class="btn btn-info pull-right">Save</button>	
+									<button type="submit" class="btn btn-info pull-right">Update</button>	
 								</div>
 								<!-- /.box-footer -->
+								</c:forEach>
+
+			                  </c:if>
 							</form>
 						</div>
 

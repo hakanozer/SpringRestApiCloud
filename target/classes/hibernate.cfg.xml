@@ -26,5 +26,6 @@
   <mapping class="Models.Sample"/>
   <mapping class="Models.Products"/>
   <mapping class="Models.Category"/>
+  <mapping class="Models.Campaigns"/>
  </session-factory>
 </hibernate-configuration>

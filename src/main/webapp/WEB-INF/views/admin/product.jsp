@@ -52,6 +52,8 @@
 								</div>
 							</div>
 							<!-- /.box-header -->
+							
+							
 							<div class="box-body table-responsive no-padding">
 								<table class="table table-hover">
 									<tbody>
@@ -88,8 +90,8 @@
 													<td>${ item.getProductadressesid()}</td>
 													
 													<td>
-														<button onclick="fncDelete(${ item.getProductid() }, 'productid' ,'products')" type="button" class="btn btn-danger btn-sm">Sil</button>
-														<button type="button" class="btn btn-primary btn-sm">Düzenle</button>
+														<button onclick="fncDelete(${ item.getProductid() }, 'productid' ,'products')" type="button" class="btn btn-danger btn-sm">Delete</button>
+														<a href='<s:url value="/admin/productUpdate/${item.getProductid()}"></s:url>' type="submit" class="btn btn-primary btn-sm">Edit</a>
 													</td>
 												</tr>
 											</c:forEach>
@@ -99,6 +101,7 @@
 									</tbody>
 								</table>
 							</div>
+							
 							<!-- /.box-body -->
 
 							<div class="box-footer clearfix">

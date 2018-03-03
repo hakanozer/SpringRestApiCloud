@@ -75,7 +75,7 @@ function productinsert() {
 	var aciklama = $('#productDescription').val();
 	var fiyat =    $('#productprice').val();
 	var tip =      $('#producttype').val();
-	var kampanya = $('#ProductCampaigne').val();
+	var kampanya = $('#productcampaignid').val();
 	var detay =    CKEDITOR.instances.editor1.getData();
 
 	$.ajax({
@@ -86,7 +86,7 @@ function productinsert() {
 			'productdescription': aciklama,
 			'productprice': fiyat,
 			'producttype': tip,
-			'ProductCampaigne': kampanya,
+			'productcampaignid': kampanya,
 			'productdetail': detay},
 		success : function(data) {
 			if (data == "") {
