@@ -92,6 +92,7 @@
 													<td>
 														<button onclick="fncDelete(${ item.getProductid() }, 'productid' ,'products')" type="button" class="btn btn-danger btn-sm">Delete</button>
 														<a href='<s:url value="/admin/productUpdate/${item.getProductid()}"></s:url>' type="submit" class="btn btn-primary btn-sm">Edit</a>
+														<a href='<s:url value="/admin/imageupload/${item.getProductid()}"></s:url>' type="submit" class="btn btn-primary btn-sm">AddImage</a>
 													</td>
 												</tr>
 											</c:forEach>

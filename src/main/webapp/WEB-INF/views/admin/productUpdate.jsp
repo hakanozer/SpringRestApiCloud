@@ -41,7 +41,7 @@
 							</div>
 							<!-- /.box-header -->
 							<!-- form start -->
-							<form class="form-horizontal" method="POST" action='<s:url value="/admin/productUpdate"></s:url>'>
+							<form class="form-horizontal" method="POST" action='<s:url value=""></s:url>'>
 										<c:if test="${ not empty ls }">
 
 									<c:forEach items="${ ls }" var="item2">
@@ -94,10 +94,18 @@
 											<div class="col-sm-10">
 												<select class="col-sm-10 form-control" name="producttype"
 													id="producttype">
-                                                     <option selected>${item2.getProducttype() }</option>
-													<option>Satılık</option>
-													<option>Kiralık</option>
-
+													<c:if test="${item2.getProducttype()=='Satılık' }">
+                                                     <option selected >${item2.getProducttype() }</option>
+                                                     <option>Kiralık</option>
+                                                     </c:if>
+													
+													
+                                                   	<c:if test="${item2.getProducttype()=='Kiralık' }">
+                                                     <option selected >${item2.getProducttype() }</option>
+                                                     <option>Satılık</option>
+                                                     </c:if>
+													
+                                                   
 
 												</select>
 											</div>
@@ -133,9 +141,15 @@
 													     <c:if test="${ not empty lcampaign }">
 
 														<c:forEach items="${ lcampaign }" var="item">
-													
+														<c:if test="${item.getCampaignid()==item2.getProductcampaignid() }">
+													<option selected value="${item.getCampaignid() }" >${item.getCampaigntitle() }</option>
+													</c:if>
+													<c:if test="${item.getCampaignid()!=item2.getProductcampaignid() }">
 													<option value="${item.getCampaignid() }">${item.getCampaigntitle() }</option>
-								
+								                     </c:if>
+								                     <c:if test="${item.getCampaignid()=='' }">
+													<option value="${item.getCampaignid() }">${item.getCampaigntitle() }</option>
+								                     </c:if>
                                                  </c:forEach>
 
 													</c:if>
@@ -168,7 +182,7 @@
 								<!-- /.box-body -->
 								<div class="box-footer">
 									<button type="reset" class="btn btn-default">Reset</button>
-									<button type="submit" class="btn btn-info pull-right">Update</button>	
+									<a onclick="productupdate()" type="button" class="btn btn-info pull-right">Update</a>	
 								</div>
 								<!-- /.box-footer -->
 								</c:forEach>

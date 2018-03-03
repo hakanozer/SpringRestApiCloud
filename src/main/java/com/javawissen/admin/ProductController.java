@@ -196,14 +196,14 @@ public class ProductController {
 		}
 	}
 	
-	
+	int urunid;
 	@RequestMapping(value = "/productUpdate/{proid}", method = RequestMethod.GET)
 	public String productUpdateGET(@PathVariable Integer proid, Model model ) {
 		Session sesi = sf.openSession();
 		List<Products> ls = sesi.createQuery("from Products where productid= "+proid+" ").list();
         sesi.close();
         String dd=ls.get(0).getProductcategoryid().replaceAll(",", "");
-        
+        urunid=proid;
 		Session sesii = sf.openSession();
 		@SuppressWarnings("unchecked")
 		List<Category> lc = sesii.createQuery("from Category where categorycompanyid=1").list();
@@ -227,13 +227,24 @@ public class ProductController {
 		return "admin/productUpdate";
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping(value = "/productUpdate", method = RequestMethod.POST)
 	public String productUpdate(Products p) {
-		
-		
-		
-		return "redirect:/admin/productUpdate";
+		try {
+			p.setProductid(urunid);
+			System.out.println("update iþlemi");
+			System.out.println("kampanya id"+p.getProductcampaignid());
+			Session sesi = sf.openSession();
+			Transaction tr = sesi.beginTransaction();
+			// int yaz=(Integer) sesi.save(prd);
+		    sesi.update(p);
+			tr.commit();
+			sesi.close();
+			return "basarili";
+		} catch (Exception e) {
+			return "basarili";
+		}
+
 	}
 	
 	
