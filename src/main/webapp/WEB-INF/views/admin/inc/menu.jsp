@@ -38,9 +38,12 @@
             </span>
           </a>
           
+          
+          
           <ul class="treeview-menu">
             <li <c:if test="${ sayfa == 'dashboard' }"> class="active" </c:if>><a href='<s:url value="/admin/dashboard"></s:url>'><i class="fa fa-circle-o"></i> Dashboard</a></li>
             <li <c:if test="${ sayfa == 'sample' }"> class="active" </c:if>><a href='<s:url value="/admin/sample"></s:url>'><i class="fa fa-circle-o"></i>Sample</a></li>
+            <li <c:if test="${ sayfa == 'image/index' }"> class="active" </c:if>><a href='<s:url value="/admin/imageupload/1"></s:url>'><i class="fa fa-circle-o"></i>Image Upload</a></li>
           </ul>
         </li>
         <li class="treeview">
