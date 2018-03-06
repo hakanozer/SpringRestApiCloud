@@ -58,13 +58,18 @@ public class ProductController {
 		for (Products item : ls) {
 			String rw = "<tr  role=\"sil\" id=\"" + item.getProductid() + "\">\r\n"
 					+ "													<td>" + item.getProductid() + "</td>\r\n"
-					+ "													<td>" + item.getProducttitle() + "</td>\r\n"
-					+ "													<td>" + item.getProductdescription()
-					+ "</td>\r\n"
-					+ "													<td><span class=\"label label-success\">Approved</span></td>\r\n"
+					+ "													<td>" + item.getProductcompanyid()+ "</td>\r\n"
+					+ "													<td>" + item.getProducttitle()+"</td>\r\n"
+					+ "                                                 <td>" + item.getProductcategoryid()+"</td>\r\n"
+					+ "													<td>" + item.getProductdescription()+"</td>\r\n"
+					+ "													<td>" + item.getProductdetail()+"</td>\r\n"
+					+ "													<td>" + item.getProductprice()+"</td>\r\n"
+				    + "													<td>" + item.getProducttype()+"</td>\r\n"
+				    + "													<td>" + item.getProductcampaignid()+"</td>\r\n"
+				    + "													<td>" + item.getProductadressesid()+"</td>\r\n"
 					+ "													<td>\r\n"
 					+ "														<button onclick=\"fncDelete("
-					+ item.getProductid()
+					
 					+ ", 'productid' ,'products')\" type=\"button\" class=\"btn btn-danger btn-sm\">Sil</button>\r\n"
 					+ "														<button type=\"button\" class=\"btn btn-primary btn-sm\">Düzenle</button>\r\n"
 					+ "													</td>\r\n"
