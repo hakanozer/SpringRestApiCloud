@@ -24,8 +24,12 @@
   <property name="hibernate.hbm2ddl.auto">update</property>
   <mapping class="Models.Admins"/>
   <mapping class="Models.Sample"/>
+<<<<<<< HEAD
   <mapping class="Models.Products"/>
   <mapping class="Models.Category"/>
   <mapping class="Models.Campaigns"/>
+=======
+  <mapping class="com.javawissen.imageupload.Image"/>
+>>>>>>> master
  </session-factory>
 </hibernate-configuration>
