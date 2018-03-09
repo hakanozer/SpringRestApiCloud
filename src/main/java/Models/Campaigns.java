@@ -10,7 +10,6 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="campaigns")
 @NamedQuery(name="Campaigns.findAll", query="SELECT c FROM Campaigns c")
 public class Campaigns implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -23,10 +22,10 @@ public class Campaigns implements Serializable {
 
 	private String campaigndetail;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date campaignenddate;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date campaignstartdate;
 
 	private byte campaignstatu;
