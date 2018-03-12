@@ -22,10 +22,12 @@
   <property name="hibernate.transaction.coordinator_class">jdbc</property>
   <property name="hibernate.current_session_context_class">thread</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
-  <mapping class="Models.Sample"/>
   <mapping class="Models.Admins"/>
-  <mapping class="Models.Companies"/>
-  <mapping class="Models.Campaigns"/>
+  <mapping class="Models.Sample"/>
   <mapping class="Models.Products"/>
+  <mapping class="Models.Category"/>
+  <mapping class="Models.Campaigns"/>
+  <mapping class="com.javawissen.imageupload.Image"/>
+  <mapping class="Models.Productsview"/>
  </session-factory>
 </hibernate-configuration>
