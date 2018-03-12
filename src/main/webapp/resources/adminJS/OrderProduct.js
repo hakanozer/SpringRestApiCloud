@@ -146,3 +146,61 @@ function ProductCartRemove(id){
 	});
 	}
 }
+
+
+function fncOrderOpen(custid) {
+	alert(custid);
+	
+		window.location.href = '/jsoncloud/admin/orderss/'+custid;
+	
+	
+		
+}
+
+function pageOpenOrder(itemCount) {
+	$.ajax({
+		url : '/jsoncloud/admin/ajaxOrderLsPage',
+		type: 'post',
+		data: {'itemCount': itemCount},
+		success : function(data) {
+			if (data == "") {
+				alert("Data Getirmede hata oluştu !");
+			}else {
+				$('tr[role=sil]').remove();
+				$('tr#orderrows').after(data);
+			}
+		}
+	});
+}
+
+pageCount();
+function pageCount() {
+$.ajax({
+	url : '/jsoncloud/admin/ajaxOrderLsCount',
+	type: 'post',
+	success : function(data) {
+		if (data == "") {
+			alert("Sayfa Getirmede hata oluştu !");
+		}else {
+			$('ul#pageLsorder').html(data);
+		}
+	}
+});
+}
+
+function fncStatusChange(orderId) {
+	$.ajax({
+		url : '/jsoncloud/admin/ajaxStatusChange',
+		type: 'post',
+		data: {'orderId': orderId},
+		success : function(data) {
+			if (data == "") {
+				alert("Data Getirmede hata oluştu !");
+			}else {
+				$('tr[role=sil]').remove();
+				$('tr#orderrows').after(data);
+			}
+		}
+	});
+}
+
