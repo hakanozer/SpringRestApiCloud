@@ -55,8 +55,21 @@ public class AdminSettingsController {
 		return "admin/register";
 	}
 	
+	@RequestMapping(value = "/settings", method = RequestMethod.GET)
+	public String adminSettings(HttpServletRequest req,Model model) {
+		if (req.getSession().getAttribute("passwordSettingError") != null ) {
+			model.addAttribute("passwordSettingError",req.getSession().getAttribute("passwordSettingError"));
+		}else if (req.getSession().getAttribute("passwordSettingSuccess") != null) {
+			model.addAttribute("passwordSettingSuccess",req.getSession().getAttribute("passwordSettingSuccess"));
+		}
+		req.getSession().removeAttribute("passwordSettingSuccess");
+		req.getSession().removeAttribute("passwordSettingError");
+		return "admin/adminSettings";
+	}
+
 	
-	
+
+
 	@ResponseBody
 	@RequestMapping(value = "/next", method = RequestMethod.POST)
 	public String adminnext(Admins adm, @RequestParam String apassword1, HttpServletRequest req) {
@@ -99,10 +112,125 @@ public class AdminSettingsController {
 		return answer;
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
+	public String adminFileUpload(@RequestParam String filename, HttpServletRequest req , @RequestParam File file) {
+		
+		try {
+			if(file.getPath().length() > 0) {
+				System.out.println("path" + file.getAbsolutePath());
+			}else {
+				System.out.println("dosya gelmedi");
+			}
+		} catch (Exception e) {
+			System.err.println("dosya gelme hatasi"+e);
+		}
+		
+		
+		
+		String answer = "";
+		if (filename.contains("\\")) {
+			String name[] = filename.split("\\\\");
+			for (String s : name) {
+				filename = s;
+			}
+		}
+		
+		req.getSession().setAttribute("Apicpath", filename);
+		
+		return answer;
+	}
+
+		
 	
+	// Admin password change  prossess
+	
+	@RequestMapping(value = "/passwordSetting", method = RequestMethod.POST)
+	public String adminPasswordSetting(HttpServletRequest req, @RequestParam String apassword, @RequestParam String apassword1, @RequestParam String apassword2 ) {
+		//old password check
+		Admins adm = (Admins) req.getSession().getAttribute("adm");
+		boolean check = adm.getApassword().equals(Utils.MD5(apassword));
+		boolean newPasswordCheck = apassword1.equals(apassword2);
 		
 	
 		
+		if (check) {
+			if (newPasswordCheck) {
+				try {
+					Session sesi = sf.openSession();
+					Transaction tr = sesi.beginTransaction();
+					adm.setApassword(Utils.MD5(apassword1));
+					sesi.update(adm);
+					tr.commit();
+					sesi.close();
+					req.getSession().setAttribute("adm",adm);
+					req.getSession().setAttribute("passwordSettingSuccess", "Sifre degistirme basarili!");
+				} catch (Exception e) {
+					System.out.println("HATAA:"+e);
+				}
+				
+			} else {
+				req.getSession().setAttribute("passwordSettingError", "Lutfen yeni sifre tekrarinizi dogru giriniz");
+			}
+		} else {
+			req.getSession().setAttribute("passwordSettingError", "Lutfen eski sifrenizi dogru giriniz");
+		}
+		
+		return "redirect:/admin/settings";
+	}
 	
-	
+	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
+	FileMeta fileMeta = null;
+
+	@RequestMapping(value = "/profilimgupload", method = RequestMethod.POST)
+	public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request) {
+		Iterator<String> itr = request.getFileNames();
+		MultipartFile mpf = null;
+		if (request.getSession().getAttribute("fileMeta") != null) {
+			
+			FileMeta oldfilemeta = (FileMeta) request.getSession().getAttribute("fileMeta");
+			System.out.println(new File("C:\\xampp\\htdocs\\Profilimages\\" + oldfilemeta.getFileName()).delete());
+			System.out.println("old file meta:"+oldfilemeta.getFileName());
+		}
+		
+			
+		while (itr.hasNext()) {
+
+			mpf = request.getFile(itr.next());
+			String tur = ".jpg";
+
+			if (mpf.getContentType() == "image/jpeg") {
+				tur = ".jpg";
+			}
+
+			String dosyaAdi = getDateTime() + tur;
+			if (files.size() >= 10)
+				files.pop();
+
+			fileMeta = new FileMeta();
+			fileMeta.setFileName(dosyaAdi);
+			fileMeta.setFileSize(mpf.getSize() / 1024 + " Kb");
+			fileMeta.setFileType(mpf.getContentType());
+
+			try {
+				fileMeta.setBytes(mpf.getBytes());
+				request.getSession().setAttribute("fileMeta", fileMeta);
+				FileCopyUtils.copy(fileMeta.getBytes(),
+						new FileOutputStream("C:\\xampp\\htdocs\\Profilimages\\" + fileMeta.getFileName()));
+
+			} catch (Exception e) {
+				System.err.println("Ekleme Hatasý " + e);
+			}
+			files.add(fileMeta);
+		}
+		return files;
+
+	}
+
+	private String getDateTime() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
+
 }

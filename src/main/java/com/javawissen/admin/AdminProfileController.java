@@ -26,7 +26,8 @@ public class AdminProfileController {
 
 	SessionFactory sf = HibernateUtil.getSessionFactory();
 
-		@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String adminedit(HttpServletRequest req, Model model) {
 		Admins adm = (Admins) req.getSession().getAttribute("adm");
 		model.addAttribute("adm", adm);
@@ -53,7 +54,38 @@ public class AdminProfileController {
 		return Utils.loginControl(req, "admin/adminEdit");
 	}
 
-	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String adminUpdate(HttpServletRequest req, Companies com,Adress adr, Admins adm, Model model) {
+		System.out.println(adr.getAdresscityid());
+		System.out.println(adr.getAdresstownid());
+		Session sesi = sf.openSession();
+		Transaction tr = sesi.beginTransaction();
+		Admins admin = (Admins) req.getSession().getAttribute("adm");
+		Adress adress = (Adress) req.getSession().getAttribute("adressadr");
+		adr.setAdressid(adress.getAdressid());
+		adr.setAdresscompaniesid(adress.getAdresscompaniesid());
+		adm.setAid(admin.getAid());
+		adm.setApassword(admin.getApassword());
+		adm.setAcompanyid(admin.getAcompanyid());
+		com.setCompanyid((Integer) req.getSession().getAttribute("companyid"));
+
+		try {
+			sesi.update(adm);
+			sesi.update(com);
+			sesi.update(adr);
+			tr.commit();
+			sesi.close();
+			req.getSession().setAttribute("updatesuccess", "duzenleme islemi basarilidir");
+			req.getSession().removeAttribute("adm");
+			req.getSession().setAttribute("adm", adm);
+			req.getSession().setAttribute("adressadr", adr);
+		} catch (Exception e) {
+			req.getSession().setAttribute("updateerror", "duzenleme islemi basarisiz");
+		}
+		return Utils.loginControl(req, "redirect:/admin/profile");
+
+	}
+
 	public Companies companyGetinformation(HttpServletRequest req) {
 		Session sesi = sf.openSession();
 		Companies compan = (Companies) sesi.createQuery("from Companies c where c.companyid = :companyid")
