@@ -27,6 +27,11 @@ public class AdminController {
 	public String login(HttpServletRequest req, Model model) {
 		boolean giris = req.getSession().getAttribute("kid") != null;
 		if (giris) {
+			Session sesi = sf.openSession();
+			Admins admin = (Admins) sesi.createQuery("from Admins a where a.aid = :kid").
+					setParameter("kid",req.getSession().getAttribute("kid") ).getSingleResult();
+			req.getSession().setAttribute("companyid",admin.getAcompanyid());
+			sesi.close();
 			return "redirect:/admin/dashboard";
 		}
 		boolean hata = req.getSession().getAttribute("hata") != null;
@@ -65,6 +70,12 @@ public class AdminController {
 			// entry admin
 			req.getSession().setAttribute("kid", admin.getAid());
 			req.getSession().setAttribute("adm", admin);
+			//sessýon of companyid created
+			sesi = sf.openSession();
+			admin = (Admins) sesi.createQuery("from Admins a where a.aid = :kid").
+					setParameter("kid",req.getSession().getAttribute("kid") ).getSingleResult();
+			req.getSession().setAttribute("companyid",admin.getAcompanyid());
+			sesi.close();
 			if (admins.getRememberMe() != null && admins.getRememberMe().equals("on")) {
 				// beni hatýrla seçilmiþ
 				Cookie cerez = new Cookie("cerez", Utils.sifrele(""+admin.getAid(), 3));
@@ -101,5 +112,7 @@ public class AdminController {
 		}
 		return "redirect:/admin/";
 	}
+	
+	
 
 }

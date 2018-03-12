@@ -67,7 +67,67 @@ public class AdminSettingsController {
 		return "admin/adminSettings";
 	}
 
-	
+	@ResponseBody
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String adminsave(Companies com, HttpServletRequest req, Adress adr) {
+		String answer = "";
+		if (!com.getCompanyname().equals("") && !com.getCompanyphone().equals("") && !com.getCompanymail().equals("")
+				&& !com.getCompanyfax().equals("")) {
+
+			try {
+
+				com.setCompanyid(Integer.MAX_VALUE);
+				Session sesi = sf.openSession();
+				Transaction tr = sesi.beginTransaction();
+				int id = (Integer) sesi.save(com);
+
+				String apiKey = createApiKey(id);
+				com.setCompanyid(id);
+				com.setCompanyapikey(Utils.MD5(apiKey));
+				sesi.update(com);
+
+				answer = apiKey;
+				if (id != 0) {
+					FileMeta filemeta = (FileMeta) req.getSession().getAttribute("fileMeta");
+					Admins admin = (Admins) req.getSession().getAttribute("adminInfo");
+					admin.setAcompanyid(id);
+					admin.setApassword(Utils.MD5(admin.getApassword()));
+					int adminid = (Integer) sesi.save(admin);
+					if (filemeta != null) {
+						File file = new File("C:\\xampp\\htdocs\\Profilimages\\" + filemeta.getFileName());
+						String uzanti = filemeta.getFileName()
+								.substring(filemeta.getFileName().length() - 4, filemeta.getFileName().length());
+						file.renameTo(new File("C:\\xampp\\htdocs\\Profilimages\\" + adminid + uzanti ));
+						admin.setApicpath(adminid + uzanti);
+					} else {
+						admin.setApicpath(null);
+					}
+					sesi.update(admin);
+					adr.setAdressid(Integer.MAX_VALUE);
+					adr.setAdresscompaniesid(id);
+
+					sesi.save(adr);
+
+				}
+				tr.commit();
+				sesi.close();
+
+			} catch (Exception e) {
+				System.err.println("hata:" + e);
+				answer = "       	<div class=\"alert alert-danger alert-dismissible\">\r\n"
+						+ "                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>\r\n"
+						+ "                <h4><i class=\"icon fa fa-ban\"></i>Alert</h4>Ayni mail hatasi\r\n"
+						+ "              </div>";
+			}
+		} else {
+			answer = "       	<div class=\"alert alert-danger alert-dismissible\">\r\n"
+					+ "                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>\r\n"
+					+ "                <h4><i class=\"icon fa fa-ban\"></i>Alert</h4>Alanlar bos olamaz\r\n"
+					+ "              </div>";
+		}
+		// System.out.println(answer);
+		return answer;
+	}
 
 
 	@ResponseBody
@@ -141,7 +201,44 @@ public class AdminSettingsController {
 		return answer;
 	}
 
+	public String createApiKey(int id) {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhss");
+		String apiKey = sdf.format(new Date()) + id;
+		apiKey = Utils.MD5(apiKey).substring(0,8);
+
+		return apiKey;
+	}
+	
+	
+	@RequestMapping(value = "/newApi", method = RequestMethod.GET)
+	public String adminUpdate(HttpServletRequest req, Model model) {
+		Session sesi = sf.openSession();
+		Transaction tr=sesi.beginTransaction();
 		
+		Companies compan=(Companies)sesi.createQuery("from  Companies c where c.companyid = :companyid").
+				setParameter("companyid", req.getSession().getAttribute("companyid")).getSingleResult();
+		
+		req.getSession().setAttribute("companyid",compan.getCompanyid());
+        String apiKey;
+		apiKey = createApiKey(compan.getCompanyid());
+		compan.setCompanyapikey(Utils.MD5(apiKey));
+		try {
+			sesi.update(compan);
+			tr.commit();
+
+		    model.addAttribute("newapisuccess",apiKey);
+
+		} catch (Exception e) {
+
+			 model.addAttribute("newapierror","yeni api basarisiz");
+		}
+		sesi.close();
+
+		return "admin/adminSettings";
+
+	}
+	
 	
 	// Admin password change  prossess
 	

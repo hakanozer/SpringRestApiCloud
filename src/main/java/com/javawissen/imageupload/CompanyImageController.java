@@ -66,7 +66,23 @@ public class CompanyImageController {
         System.out.println("CompanyImageController home");
         return Utils.Utils.loginControl(req, "image/companyImage") ;
     }
-        
+    
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    public @ResponseBody Map list() {
+        log.debug("uploadGet called");
+        List<Companyimage> list = CompanyimageDao.list(companyId);
+        for(Companyimage image : list) {
+            image.setUrl("/picture/"+image.getId());
+            image.setThumbnailUrl("/thumbnail/"+image.getId());
+            image.setDeleteUrl("/delete/"+image.getId());
+            image.setDeleteType("DELETE");
+        }
+        Map<String, Object> files = new HashMap<>();
+        files.put("files", list);
+        log.debug("Returning: {}", files);
+        return files;
+    }
+    
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody Map upload(MultipartHttpServletRequest request, HttpServletResponse response) {
         log.debug("uploadPost called");
@@ -120,6 +136,49 @@ public class CompanyImageController {
         files.put("files", list);
         return files;
     }
-        
     
+    @RequestMapping(value = "/picture/{id}", method = RequestMethod.GET)
+    public void picture(HttpServletResponse response, @PathVariable Long id) {
+    	Companyimage image = CompanyimageDao.get(id);
+        File imageFile = new File(fileUploadDirectory+"/"+image.getNewFilename());
+        response.setContentType(image.getContentType());
+        response.setContentLength(image.getSize().intValue());
+        System.err.println("resim adý:"+image.getNewFilename());
+        try {
+            InputStream is = new FileInputStream(imageFile);
+            IOUtils.copy(is, response.getOutputStream());
+        } catch(IOException e) {
+            log.error("Could not show picture "+id, e);
+            System.err.println("hata:"+id+" mesaj:"+e);
+        }
+    }
+    
+    @RequestMapping(value = "/thumbnail/{id}", method = RequestMethod.GET)
+    public void thumbnail(HttpServletResponse response, @PathVariable Long id) {
+        Companyimage image = CompanyimageDao.get(id);
+        File imageFile = new File(fileUploadDirectory+"/"+image.getThumbnailFilename());
+        response.setContentType(image.getContentType());
+        response.setContentLength(image.getThumbnailSize().intValue());
+        try {
+            InputStream is = new FileInputStream(imageFile);
+            IOUtils.copy(is, response.getOutputStream());
+        } catch(IOException e) {
+            log.error("Could not show thumbnail "+id, e);
+        }
+    }
+    
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public @ResponseBody List delete(@PathVariable Long id) {
+        Companyimage image = CompanyimageDao.get(id);
+        File imageFile = new File(fileUploadDirectory+"/"+image.getNewFilename());
+        imageFile.delete();
+        File thumbnailFile = new File(fileUploadDirectory+"/"+image.getThumbnailFilename());
+        thumbnailFile.delete();
+        CompanyimageDao.delete(image);
+        List<Map<String, Object>> results = new ArrayList<>();
+        Map<String, Object> success = new HashMap<>();
+        success.put("success", true);
+        results.add(success);
+        return results;
+    }
 }

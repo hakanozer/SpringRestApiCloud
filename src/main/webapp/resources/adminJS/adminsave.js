@@ -101,38 +101,5 @@ function fncsave() {
 
 };
 
-function fncsave() {
-	var companyname = $('#companyname').val();
-	var companyfax = $('#companyfax').val();
-	var companyphone = $('#companyphone').val();
-	var companymail = $('#companymail').val();
-	$.ajax({
-		url : '/jsoncloud/admin/save',
-		type : 'POST',
-		data : {
-			'companyname' : companyname,
-			'companyfax' : companyfax,
-			'companyphone' : companyphone,
-			'companymail' : companymail
-			
-
-		},
-		success : function(data) {
-			if (data.length == 32) {
-				$('#firststep').hide();
-				$('#secondstep').hide();
-				$('#thirdstep').show();
-				$('#api').html(data);
-			}else{
-				$('#error1').html(data);
-			}
-		}
-
-	});
-
-};
-
-
-
 
 

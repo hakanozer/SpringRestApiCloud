@@ -26,7 +26,47 @@ public class AdminProfileController {
 
 	SessionFactory sf = HibernateUtil.getSessionFactory();
 
-	
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String login(HttpServletRequest req, Model model) {
+		boolean admDurum = req.getSession().getAttribute("adm") != null;
+		if (admDurum) {
+			Admins adm = (Admins) req.getSession().getAttribute("adm");
+			model.addAttribute("adm", adm);
+		}
+		boolean giris = req.getSession().getAttribute("companyid") != null;
+		String companyadress = "";
+
+		if (giris) {
+			model.addAttribute("com", companyGetinformation(req));
+
+			try {
+				Session sesi = sf.openSession();
+				ViewCompaniesAdress vca = (ViewCompaniesAdress) sesi
+						.createQuery("From ViewCompaniesAdress v where v.companyid = :companyid")
+						.setParameter("companyid", req.getSession().getAttribute("companyid")).getSingleResult();
+				req.getSession().setAttribute("adressvca", vca);
+				System.out.println(vca.getAdressid());
+				companyadress = vca.getAdresstitle() + " " + vca.getCitytitle() + " " + vca.getTowntitle() + " "
+						+ vca.getNeighborhoodtitle() + " " + vca.getStreettitle();
+
+				model.addAttribute("companyadress", companyadress);
+				sesi.close();
+			} catch (Exception e) {
+				System.out.println("HATA:" + e);
+			}
+
+		}
+
+		if (req.getSession().getAttribute("updatesuccess") != null) {
+			model.addAttribute("success", req.getSession().getAttribute("updatesuccess"));
+		}
+		if (req.getSession().getAttribute("updateerror") != null) {
+			model.addAttribute("error", req.getSession().getAttribute("updateerror"));
+		}
+
+		return "admin/profile";
+	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String adminedit(HttpServletRequest req, Model model) {
 		Admins adm = (Admins) req.getSession().getAttribute("adm");
