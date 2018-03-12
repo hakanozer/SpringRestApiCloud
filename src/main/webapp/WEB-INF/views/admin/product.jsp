@@ -36,7 +36,7 @@
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">Responsive Hover Table</h3>
+								<h3 class="box-title">Product List</h3>
 
 								<div class="box-tools">
 									<div class="input-group input-group-sm" style="width: 150px;">
@@ -56,20 +56,34 @@
 								<table class="table table-hover">
 									<tbody>
 										<tr id="rows">
-											<th style="width: 40px">sid</th>
-											<th>stitle</th>
-											<th>sdesc</th>
-											<th>ssprice</th>
-											<th style="width: 130px;">İşlem</th>
+											<th style="width: 40px">productid</th>
+											<th>productcompanyid</th>
+											<th>producttitle</th>
+											<th>productcategoryid</th>
+											<th>productdescription</th>
+											<th>productdetail</th>
+											<th>productprice</th>
+											<th>producttype</th>
+											<th>productcampaignid</th>
+											<th>productadressesid</th>
+											
+											
+											<th style="width: 130px;">operation</th>
 										</tr>
 										
 										<c:if test="${ not empty ls }">
 										
 											<c:forEach items="${ ls }" var="item">
-												<tr id="${ item.getSid() }" role="sil">
-													<td>${ item.getSid() }</td>
-													<td>${ item.getStitle() }</td>
-													<td>${ item.getSdesc()}</td>
+												<tr id="${ item.getProductid() }" role="sil">
+													<td>${ item.getProductcompanyid() }</td>
+													<td>${ item.getProducttitle() }</td>
+													<td>${ item.getProductcategoryid()}</td>
+													<td>${ item.getProductdescription()}</td>
+													<td>${ item.getProductdetail()}</td>
+													<td>${ item.getProductprice()}</td>
+													<td>${ item.getProducttype()}</td>
+													<td>${ item.getProductcampaignid()}</td>
+													<td>${ item.getProductadressesid()}</td>
 													<td><span class="label label-success">Approved</span></td>
 													<td>
 														<button onclick="fncDelete(${ item.getSid() }, 'sid' ,'sample')" type="button" class="btn btn-danger btn-sm">Sil</button>

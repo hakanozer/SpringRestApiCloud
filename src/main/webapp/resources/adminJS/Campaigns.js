@@ -1,6 +1,6 @@
 function pageOpen(itemCount) {
 		$.ajax({
-			url : '/jsoncloud/admin/ajaxSamplePage',
+			url : '/jsoncloud/admin/ajaxCampaignPage',
 			type: 'post',
 			data: {'itemCount': itemCount},
 			success : function(data) {
@@ -17,7 +17,7 @@ function pageOpen(itemCount) {
 pageCount();
 function pageCount() {
 	$.ajax({
-		url : '/jsoncloud/admin/ajaxPageCount',
+		url : '/jsoncloud/admin/campaignPageCount',
 		type: 'post',
 		success : function(data) {
 			if (data == "") {
@@ -32,7 +32,7 @@ function pageCount() {
 function pageSearch(itemCount) {
 	var ara = $('#ara').val();
 	$.ajax({
-		url : '/jsoncloud/admin/ajaxSampleSearch',
+		url : '/jsoncloud/admin/ajaxCampaignSearch',
 		type: 'post',
 		data: {'ara': ara,
 			   'itemCount': itemCount},
@@ -53,7 +53,7 @@ function pageSearch(itemCount) {
 function pageCountSearch() {
 	var ara = $('#ara').val();
 $.ajax({
-	url : '/jsoncloud/admin/ajaxPageCountSearch',
+	url : '/jsoncloud/admin/ajaxCampaignPageCountSearch',
 	type: 'post',
 	data: {'ara': ara},
 	success : function(data) {
@@ -67,3 +67,4 @@ $.ajax({
 	}
 });
 }
+
