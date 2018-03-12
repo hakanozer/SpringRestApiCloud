@@ -17,8 +17,10 @@
     
   <link rel="stylesheet" href="<s:url value="/resources/bower_components/Ionicons/css/ionicons.min.css"></s:url>">
   <!-- Theme style -->
- 
-  <link rel="stylesheet" href="<s:url value="/resources/bower_components/select2/dist/css/select2.min.css"></s:url>">
+      
+      <link rel="stylesheet" href="<s:url value="/resources/bower_components/select2/dist/css/select2.min.css"></s:url>">
+    
+
   <link rel="stylesheet" href="<s:url value="/resources/dist/css/AdminLTE.min.css"></s:url>">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->

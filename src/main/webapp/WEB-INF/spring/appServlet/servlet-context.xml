@@ -21,13 +21,18 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	
+	 <beans:bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <beans:property name="maxUploadSize" value="20971520" /> 
+        <beans:property name="maxInMemorySize" value="1048576" />
+    </beans:bean>
+	
 	<context:component-scan base-package="com.javawissen.jsoncloud" />
 	<context:component-scan base-package="com.javawissen.admin" />
-<<<<<<< HEAD
+	<context:component-scan base-package="com.javawissen.imageupload" />
 	<context:component-scan base-package="com.wissen.restapi" />
-=======
-		<context:component-scan base-package="com.java.restapi" />
->>>>>>> 2f476fb85f7ae94701fc8fa3947a155931dcad2a
+	
 	
 	
 </beans:beans>

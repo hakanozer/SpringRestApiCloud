@@ -1,20 +1,5 @@
 fnchide();
 
-$(function () {
-    $('#profilimgfileupload').fileupload({
-        dataType: 'json',
-        
-        done: function (e, data) {
-        	
-            $.each(data.result, function (index, file) {
-            	
-            	$("#profilimg").html("<img class=\"profile-user-img img-responsive img-circle\" src='http://localhost:8080/Profilimages/"+file.fileName+"'  alt=\"User profile picture\">"	);
-            }); 
-        },
-    });
-});
-
-
 function fnchide() {
 	$('#secondstep').hide();
 	$('#thirdstep').hide();
@@ -59,15 +44,6 @@ function fncsave() {
 	var companyfax = $('#companyfax').val();
 	var companyphone = $('#companyphone').val();
 	var companymail = $('#companymail').val();
-	
-	var adresstitle = $('#adresstitle').val();
-	var adresscityid = $('#cityid').val();
-	var adresstownid = $('#townid').val();
-	var adressdescription = $('#description').val();
-	var adressneighborhoodid = $('#neighborhoodid').val();
-	var adressstreetid = $('#streetid').val();
-	var adressinformation = $('#information').val();
-	
 	$.ajax({
 		url : '/jsoncloud/admin/save',
 		type : 'POST',
@@ -75,19 +51,12 @@ function fncsave() {
 			'companyname' : companyname,
 			'companyfax' : companyfax,
 			'companyphone' : companyphone,
-			'companymail' : companymail,
+			'companymail' : companymail
 			
-			'adresscityid' : adresscityid,
-			'adresstownid' : adresstownid,
-			'adressdescription' : adressdescription,
-			'adressneighborhoodid' : adressneighborhoodid,
-			'adressstreetid' : adressstreetid,
-			'adressinformation' : adressinformation,
-			'adresstitle' : adresstitle,
 
 		},
 		success : function(data) {
-			if (data.length == 8) {
+			if (data.length == 32) {
 				$('#firststep').hide();
 				$('#secondstep').hide();
 				$('#thirdstep').show();
@@ -100,6 +69,4 @@ function fncsave() {
 	});
 
 };
-
-
 
