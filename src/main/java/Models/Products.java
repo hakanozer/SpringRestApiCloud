@@ -22,9 +22,7 @@ public class Products implements Serializable {
 
 	private int productcampaignid;
 
-	private String productcategoryid;
-
-	
+	private int productcategoryid;
 
 	private int productcompanyid;
 
@@ -71,7 +69,13 @@ public class Products implements Serializable {
 		this.productcampaignid = productcampaignid;
 	}
 
-	
+	public int getProductcategoryid() {
+		return this.productcategoryid;
+	}
+
+	public void setProductcategoryid(int productcategoryid) {
+		this.productcategoryid = productcategoryid;
+	}
 
 	public int getProductcompanyid() {
 		return this.productcompanyid;
@@ -143,14 +147,6 @@ public class Products implements Serializable {
 
 	public void setProducttype(String producttype) {
 		this.producttype = producttype;
-	}
-	
-	public String getProductcategoryid() {
-		return productcategoryid;
-	}
-
-	public void setProductcategoryid(String productcategoryid) {
-		this.productcategoryid = productcategoryid;
 	}
 
 }
