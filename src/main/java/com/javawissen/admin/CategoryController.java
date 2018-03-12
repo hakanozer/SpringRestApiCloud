@@ -28,8 +28,40 @@ import Utils.Utils;
 public class CategoryController {
 	
 	
+	
 	SessionFactory sf=HibernateUtil.getSessionFactory();
+	//category listing
+	@RequestMapping(value = "/category", method = RequestMethod.GET)
+	public String categoryList(HttpServletRequest req, Model model) {
+		Session sesi = sf.openSession();
+		req.getSession().getAttribute("kid");
+		Admins admin = (Admins) sesi.createQuery("from Admins a where a.aid = :kid").
+				setParameter("kid",req.getSession().getAttribute("kid") ).getSingleResult();
+		
+		@SuppressWarnings("unchecked")
+		List<Category> Cls = sesi.createQuery("from Category where categorycompanyid = :catid").setParameter("catid",Integer.parseInt(admin.getAcompanyid())  )
+				.list();
+		
+		List<Category> ls = new ArrayList<Category>();
+		sesi.close();
+		for (Category item : Cls) {
+			if (item.getCategoryparentid() == 0) {
+				ls.add(item);
+				for (Category itemx : Cls) {
+					if(itemx.getCategoryparentid() != 0 && itemx.getCategoryparentid() == item.getCategoryid()) {
+						ls.add(itemx);
+					}
+				}
+			}
+		}
 
+	
+
+	model.addAttribute("newls",ls);
+
+	return Utils.loginControl(req,"admin/category");
+
+	}
 	
 	
 	@RequestMapping (value="/addCategory",method = RequestMethod.GET)
@@ -74,7 +106,7 @@ public class CategoryController {
 		String categoryLink = data.replace(" ", "-").toLowerCase();
 		return categoryLink;
 	}
-	//dropdown menu 
+	//dropdown menu
 	@SuppressWarnings("unchecked")
 	public List<Category>fillCategoryDropdown(){
 		List<Category>ls=new ArrayList<Category>();
@@ -83,6 +115,24 @@ public class CategoryController {
 		sesi.close();
 		return ls;
 	}
-	
+	//edit
+	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
+	public String editRow(@PathVariable Integer id , Model model) {
+		Session sesi = sf.openSession();
+		Transaction tr = sesi.beginTransaction();
+		Category kl = (Category) sesi.createQuery("from Category where categoryid = '"+id+"'").list().get(0);
+		tr.commit();
+		sesi.close();
+		List<Category>showCategory=fillCategoryDropdown();
+		model.addAttribute("showCategory", showCategory);
+		for(Category item:showCategory)
+		{
+			System.out.println(item.getCategorytitle()+" "+item.getCategoryid() );
+			
+			
+		}
+		model.addAttribute("kl", kl);
+		return "admin/addCategory";
+	}
 	
 }
