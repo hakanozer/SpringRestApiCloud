@@ -41,7 +41,8 @@
           <ul class="treeview-menu">
             <li <c:if test="${ sayfa == 'dashboard' }"> class="active" </c:if>><a href='<s:url value="/admin/dashboard"></s:url>'><i class="fa fa-circle-o"></i> Dashboard</a></li>
             <li <c:if test="${ sayfa == 'sample' }"> class="active" </c:if>><a href='<s:url value="/admin/sample"></s:url>'><i class="fa fa-circle-o"></i>Sample</a></li>
-            <li <c:if test="${ sayfa == 'useradress' }"> class="active" </c:if>><a href='<s:url value="/admin/useraddress"></s:url>'><i class="fa fa-circle-o"></i>User Address</a></li>
+           <li <c:if test="${ sayfa == 'orderManagement' }"> class="active" </c:if>><a href='<s:url value="/admin/orderManagement"></s:url>'><i class="fa fa-circle-o"></i>orderManagement</a></li>
+      
           </ul>
         </li>
         <li class="treeview">

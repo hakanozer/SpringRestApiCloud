@@ -31,5 +31,7 @@
   <mapping class="Models.Street"/>
   <mapping class="Models.Customer"/>
   <mapping class="Models.Viewaddress"/>
+  <mapping class="Models.Basket"/>
+  <mapping class="Models.Viewproductlist"/>
  </session-factory>
 </hibernate-configuration>
