@@ -17,17 +17,11 @@ public class Admins implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int aid;
 
-	private int acompanyid;
-
 	private String amail;
 
 	private String aname;
 
 	private String apassword;
-
-	private String aphone;
-
-	private String apicpath;
 
 	private String asurname;
 
@@ -43,14 +37,6 @@ public class Admins implements Serializable {
 
 	public void setAid(int aid) {
 		this.aid = aid;
-	}
-
-	public int getAcompanyid() {
-		return this.acompanyid;
-	}
-
-	public void setAcompanyid(int acompanyid) {
-		this.acompanyid = acompanyid;
 	}
 
 	public String getAmail() {
@@ -75,22 +61,6 @@ public class Admins implements Serializable {
 
 	public void setApassword(String apassword) {
 		this.apassword = apassword;
-	}
-
-	public String getAphone() {
-		return this.aphone;
-	}
-
-	public void setAphone(String aphone) {
-		this.aphone = aphone;
-	}
-
-	public String getApicpath() {
-		return this.apicpath;
-	}
-
-	public void setApicpath(String apicpath) {
-		this.apicpath = apicpath;
 	}
 
 	public String getAsurname() {

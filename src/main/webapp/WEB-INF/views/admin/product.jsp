@@ -16,19 +16,19 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					Sample <small>Sample Page</small>
+					Product <small>Product Page</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href='<s:url value="/admin/dashboard"></s:url>'><i
 							class="fa fa-dashboard"></i> Dashboard</a></li>
-					<li class="active">Sample</li>
+					<li class="active">Product</li>
 				</ol>
 			</section>
 			<section class="content">
 				<div class="row">
 
 					<div class="col-xs-12">
-						<a href='<s:url value="/admin/sampleAdd"></s:url>' class="btn btn-app pull-right"> <i class="fa fa-plus"></i>
+						<a href='<s:url value="/admin/productAdd"></s:url>' class="btn btn-app pull-right"> <i class="fa fa-plus"></i>
 							Add
 						</a>
 					</div>
@@ -44,7 +44,7 @@
 											class="form-control pull-right" placeholder="Search">
 
 									<div class="input-group-btn">
-			                          <button  onclick="pageSearch('0')" type="submit" class="btn btn-default">
+			                          <button  onclick="pageProductSearch('0')" type="submit" class="btn btn-default">
 			                          <i class="fa fa-search"></i>
 				                      </button>
 	                                       </div>
@@ -52,42 +52,47 @@
 								</div>
 							</div>
 							<!-- /.box-header -->
+							
+							
 							<div class="box-body table-responsive no-padding">
 								<table class="table table-hover">
 									<tbody>
 										<tr id="rows">
-											<th style="width: 40px">productid</th>
-											<th>productcompanyid</th>
-											<th>producttitle</th>
-											<th>productcategoryid</th>
-											<th>productdescription</th>
-											<th>productdetail</th>
-											<th>productprice</th>
-											<th>producttype</th>
-											<th>productcampaignid</th>
-											<th>productadressesid</th>
+											<th style="width: 40px">ID</th>
+											<th>Company Name</th>
+											<th>Title</th>
+											<th>Category</th>
+											<th>Description</th>
+											<th>Detail</th>
+											<th>Price</th>
+											<th>Type</th>
+											<th>Campaign Name</th>
+											
+										
 											
 											
-											<th style="width: 130px;">operation</th>
+											<th style="width: 200px;">operation</th>
 										</tr>
 										
 										<c:if test="${ not empty ls }">
 										
 											<c:forEach items="${ ls }" var="item">
 												<tr id="${ item.getProductid() }" role="sil">
-													<td>${ item.getProductcompanyid() }</td>
+												    <td>${ item.getProductid() }</td>
+													<td>${ item.getCompanyname() }</td>
 													<td>${ item.getProducttitle() }</td>
-													<td>${ item.getProductcategoryid()}</td>
+													<td>${ item.getCategorytitle()}</td>
 													<td>${ item.getProductdescription()}</td>
 													<td>${ item.getProductdetail()}</td>
 													<td>${ item.getProductprice()}</td>
 													<td>${ item.getProducttype()}</td>
-													<td>${ item.getProductcampaignid()}</td>
-													<td>${ item.getProductadressesid()}</td>
-													<td><span class="label label-success">Approved</span></td>
+													<td>${ item.getCampaigntitle()}</td>
+													
+													
 													<td>
-														<button onclick="fncDelete(${ item.getSid() }, 'sid' ,'sample')" type="button" class="btn btn-danger btn-sm">Sil</button>
-														<button type="button" class="btn btn-primary btn-sm">Düzenle</button>
+														<button onclick="fncDelete(${ item.getProductid() }, 'productid' ,'products')" type="button" class="btn btn-danger btn-sm">Delete</button>
+														<a href='<s:url value="/admin/productUpdate/${item.getProductid()}"></s:url>' type="submit" class="btn btn-primary btn-sm">Edit</a>
+														<a href='<s:url value="/admin/imageupload/${item.getProductid()}"></s:url>' type="submit" class="btn btn-primary btn-sm">Img</a>
 													</td>
 												</tr>
 											</c:forEach>
@@ -97,6 +102,7 @@
 									</tbody>
 								</table>
 							</div>
+							
 							<!-- /.box-body -->
 
 							<div class="box-footer clearfix">
@@ -120,7 +126,7 @@
 		<c:import url="/admin/sidebar"></c:import>
 	</div>
 	<c:import url="/admin/js"></c:import>
-	<script src='<s:url value="/resources/adminJS/Sample.js"></s:url>'></script>
+	<script src='<s:url value="/resources/adminJS/product.js"></s:url>'></script>
 </body>
 </html>
 
