@@ -43,7 +43,7 @@ public class ImageController {
     private ImageDao imageDao;
     
     private String fileUploadDirectory = "";
-    private String path = "tmp";
+    private String path = "xampp/tmp";
     private Integer productID = -1;
 
     @RequestMapping(value="/{id}")
