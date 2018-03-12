@@ -3,8 +3,11 @@ package Models;
 import java.io.Serializable;
 import javax.persistence.*;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+=======
+>>>>>>> 2f476fb85f7ae94701fc8fa3947a155931dcad2a
 
 /**
  * The persistent class for the customers database table.
@@ -18,15 +21,24 @@ public class Customer implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+<<<<<<< HEAD
 	private Integer customerid;
 
 	private Integer customercompanyid;
+=======
+	private int customerid;
+
+	private int customercompanyid;
+>>>>>>> 2f476fb85f7ae94701fc8fa3947a155931dcad2a
 
 	private String customermail;
 
 	private String customername;
 
+<<<<<<< HEAD
 	@JsonIgnore
+=======
+>>>>>>> 2f476fb85f7ae94701fc8fa3947a155931dcad2a
 	private String customerpassword;
 
 	private String customerphone;
@@ -36,6 +48,7 @@ public class Customer implements Serializable {
 	public Customer() {
 	}
 
+<<<<<<< HEAD
 
 	public Integer getCustomercompanyid() {
 		return this.customercompanyid;
@@ -55,6 +68,24 @@ public class Customer implements Serializable {
 	}
 
 
+=======
+	public int getCustomerid() {
+		return this.customerid;
+	}
+
+	public void setCustomerid(int customerid) {
+		this.customerid = customerid;
+	}
+
+	public int getCustomercompanyid() {
+		return this.customercompanyid;
+	}
+
+	public void setCustomercompanyid(int customercompanyid) {
+		this.customercompanyid = customercompanyid;
+	}
+
+>>>>>>> 2f476fb85f7ae94701fc8fa3947a155931dcad2a
 	public String getCustomermail() {
 		return this.customermail;
 	}

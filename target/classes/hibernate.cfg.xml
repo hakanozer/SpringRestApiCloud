@@ -24,8 +24,20 @@
   <property name="hibernate.hbm2ddl.auto">update</property>
   <mapping class="Models.Admins"/>
   <mapping class="Models.Sample"/>
+<<<<<<< HEAD
   <mapping class="Models.Customer"/>
   <mapping class="Models.Viewcustomercompany"/>
    <mapping class="Models.Viewcompany"/>
+=======
+  <mapping class="Models.City"/>
+  <mapping class="Models.Town"/>
+  <mapping class="Models.Neighborhood"/>
+  <mapping class="Models.Adress"/>
+  <mapping class="Models.Street"/>
+  <mapping class="Models.Customer"/>
+  <mapping class="Models.Viewaddress"/>
+  <mapping class="Models.Basket"/>
+  <mapping class="Models.Viewproductlist"/>
+>>>>>>> 2f476fb85f7ae94701fc8fa3947a155931dcad2a
  </session-factory>
 </hibernate-configuration>

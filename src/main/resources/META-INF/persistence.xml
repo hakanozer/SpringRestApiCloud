@@ -3,8 +3,18 @@
 	<persistence-unit name="JsonCloud">
 		<class>Models.Admins</class>
 		<class>Models.Sample</class>
+<<<<<<< HEAD
 		<class>Models.Customer</class>
 		<class>Models.Viewcustomercompany</class>
 		<class>Models.Companies</class>
+=======
+		<class>Models.City</class>
+		<class>Models.Neighborhood</class>
+		<class>Models.Town</class>
+		<class>Models.Adress</class>
+		<class>Models.Street</class>
+		<class>Models.Customer</class>
+		<class>Models.Viewaddress</class>
+>>>>>>> 2f476fb85f7ae94701fc8fa3947a155931dcad2a
 	</persistence-unit>
 </persistence>
