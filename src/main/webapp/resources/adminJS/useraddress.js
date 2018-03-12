@@ -69,3 +69,73 @@ $.ajax({
 }
 
 
+//ilçe dropdown doldurma
+function fncUserTown() {
+	var cityid = $('#cityid').val();
+
+	$.ajax({
+		url : '/jsoncloud/admin/useraddresstown',
+		type : 'POST',
+		data : {
+			'cityid' : cityid
+		},
+
+		success : function(data) {
+			if (data == "") {
+				alert("Town fetch failed");
+			} else {
+				$('#townid').html(data);
+			}
+		}
+	})
+}
+
+//mahalle dropdown doldurma
+function fncUserNeighborhood() {
+	var townid = $('#townid').val();
+	$.ajax({
+		url : '/jsoncloud/admin/useraddressneighborhood',
+		type : 'POST',
+		data : {
+			'townid' : townid
+		},
+
+		success : function(data) {
+			if (data == "") {
+				alert("Neighborhood fetch failed");
+			} else {
+				$('#neighborhoodid').html(data);
+			}
+		}
+	})
+}
+
+//cadde-sokak dropdown doldurma
+function fncUserStreet() {
+	var neighborhoodid = $('#neighborhoodid').val();
+	$.ajax({
+		url : '/jsoncloud/admin/useraddressstreet',
+		type : 'POST',
+		data : {
+			'neighborhoodid' : neighborhoodid
+		},
+
+		success : function(data) {
+			if (data == "") {
+				alert("Street fetch failed");
+			} else {
+				$('#streetid').html(data);
+			}
+		}
+	})
+}
+
+$('#reset').click(function(){
+
+	$('select#adresscustomerid').val("-1").change();
+	$('select#cityid').val("-1").change();
+	$('#townid').html("<option selected=\"selected\">Please select your town</option>");
+	$('#neighborhoodid').html("<option selected=\"selected\">Please select your town</option>");
+	$('#streetid').html("<option selected=\"selected\">Please select your town</option>");
+})
+

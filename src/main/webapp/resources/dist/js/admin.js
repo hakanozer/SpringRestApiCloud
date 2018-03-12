@@ -23,10 +23,7 @@ function fncDelete(id, idName , tableName) {
 $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
-    
-    $(".getValue").click(function() {
-    alert($(".leaderMultiSelctdropdown").val());
-});
+
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
     //Datemask2 mm/dd/yyyy

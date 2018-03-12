@@ -3,12 +3,12 @@
 	<persistence-unit name="JsonCloud">
 		<class>Models.Admins</class>
 		<class>Models.Sample</class>
-		<class>Models.Products</class>
-		<class>Models.Category</class>
-		<class>Models.Campaigns</class>
-		<class>com.javawissen.imageupload.Image</class>
-		<class>Models.Companies</class>
-		<class>Models.Productsview</class>
-
+		<class>Models.City</class>
+		<class>Models.Neighborhood</class>
+		<class>Models.Town</class>
+		<class>Models.Adress</class>
+		<class>Models.Street</class>
+		<class>Models.Customer</class>
+		<class>Models.Viewaddress</class>
 	</persistence-unit>
 </persistence>

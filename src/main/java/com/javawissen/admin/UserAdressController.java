@@ -122,6 +122,7 @@ public class UserAdressController {
 			bl.append(rw);
 
 		}
+
 		sesi.close();
 		return bl.toString();
 	}
@@ -147,22 +148,142 @@ public class UserAdressController {
 		}
 		return bl.toString();
 	}
+
+	// User Address Add
+	@RequestMapping(value = "/userAddressAdd", method = RequestMethod.GET)
+	public String userAddressAdd(Model model, HttpServletRequest req) {
+
+		List<City> cityLs = cityFill();
+		List<Customer> userLs = userFill();
+		model.addAttribute("cityLs", cityLs);
+		model.addAttribute("userLs", userLs);
+		boolean error = req.getSession().getAttribute("error") != null;
+		if (error) {
+			String er = "" + req.getSession().getAttribute("error");
+			model.addAttribute("error", er);
+			req.getSession().removeAttribute("error");
+		}
+		return Utils.loginControl(req, "admin/userAddressAdd");
+	}
+
+	// Ýnsert
+	@RequestMapping(value = "/useraddresssave", method = RequestMethod.POST)
+	public String userAddressSave(Adress adr, Model model, HttpServletRequest req) {
+		if (adr.getAdresscustomerid() == -1 || adr.getAdresstitle().equals("") || adr.getAdressdescription().equals("")
+				|| adr.getAdresscityid() == -1) {
+			req.getSession().setAttribute("error", "Eksik bilgi girdiniz !");
+			return "redirect:/admin/userAddressAdd";
+		} else {
+			Session sesi = sf.openSession();
+			Transaction tr = sesi.beginTransaction();
+			adr.setAdressid(Integer.MAX_VALUE);
+			sesi.save(adr);
+			tr.commit();
+			sesi.close();
+		}
+		return "redirect:/admin/userAddressAdd";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/useraddresstown", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String userTown(@RequestParam int cityid) {
+		Session sesi = sf.openSession();
+		StringBuilder bl = new StringBuilder();
+		City ct = (City) sesi.createQuery("from City  where cityid='" + cityid + "'").getSingleResult();
+		@SuppressWarnings("unchecked")
+		List<Town> townLs = sesi.createQuery("from Town  where towncityid='" + ct.getCitykey() + "'").list();
+		bl.append("<option value=\"-1\" selected=\"selected\">Please select your town</option>");
+		for (Town item : townLs) {
+			String rw = " <option value=\"" + item.getTownid() + "\">" + item.getTowntitle() + "</option>";
+			bl.append(rw);
+		}
+		sesi.close();
+		return bl.toString();
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/useraddressneighborhood", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String userNeighborhood(@RequestParam int townid) {
+		Session sesi = sf.openSession();
+		StringBuilder bl = new StringBuilder();
+		Town tw = (Town) sesi.createQuery("from Town where townid='" + townid + "'").getSingleResult();
+		@SuppressWarnings("unchecked")
+		List<Neighborhood> neighborhoodLs = sesi
+				.createQuery("from Neighborhood where neighborhoodtownid='" + tw.getTownkey() + "'").list();
+		bl.append("<option value=\"-1\" selected=\"selected\">Please select your neighborhood</option>");
+		for (Neighborhood item : neighborhoodLs) {
+			String rw = "<option value=\"" + item.getNeighborhoodid() + "\">" + item.getNeighborhoodtitle()
+					+ "</option>";
+			bl.append(rw);
+		}
+		sesi.close();
+		return bl.toString();
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/useraddressstreet", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String userStreet(@RequestParam int neighborhoodid) {
+		Session sesi = sf.openSession();
+		StringBuilder bl = new StringBuilder();
+		Neighborhood ng = (Neighborhood) sesi
+				.createQuery("from Neighborhood where neighborhoodid='" + neighborhoodid + "'").getSingleResult();
+		@SuppressWarnings("unchecked")
+		List<Street> streetLs = sesi
+				.createQuery("from Street where streetneighborhoodid='" + ng.getNeighborhoodkey() + "'").list();
+		bl.append("<option value=\"-1\" selected=\"selected\">Please select your street</option>");
+		for (Street item : streetLs) {
+			String rw = "<option value=\"" + item.getStreetid() + "\">" + item.getStreettitle() + "</option>";
+			bl.append(rw);
+		}
+		sesi.close();
+		return bl.toString();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<City> cityFill() {
+		List<City> cityLs = new ArrayList<City>();
+		Session sesi = sf.openSession();
+		Transaction tr = sesi.beginTransaction();
+		cityLs = sesi.createQuery("from City").list();
+		tr.commit();
+		sesi.close();
+		return cityLs;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Customer> userFill() {
+		List<Customer> userLs = new ArrayList<Customer>();
+		Session sesi = sf.openSession();
+		Transaction tr = sesi.beginTransaction();
+		userLs = sesi.createQuery("from Customer").list();
+		tr.commit();
+		sesi.close();
+		return userLs;
+	}
+	
 	//Edit
 	@RequestMapping(value="/userAddressUpdate/{adressid}", method=RequestMethod.GET)
 	public String userAddressEdit(@PathVariable Integer adressid, Model model, HttpServletRequest req) {
+		//Adress ad=(Adress) req.getSession().getAttribute("adr");
 		Session sesi= sf.openSession();
+	
 		@SuppressWarnings("unchecked")
 		List<Viewaddress> ls=sesi.createQuery("from Viewaddress where adressid='"+adressid+"'").setMaxResults(1).list();
+		//if (ls.get(0).getAdressid() != ad.getAdresscityid()) {
+			//model.addAttribute("error", "Company id is not validated !");
+		//} else {
 		      List<City> cityLs = cityFill();
 		    model.addAttribute("adresidd",ls.get(0).getAdressid());
 			model.addAttribute("ls", ls);
+			System.out.println("id " + adressid);
 			model.addAttribute("cityLs", cityLs);
 			sesi.close();
+		//}
 		return Utils.loginControl(req, "admin/userAddressUpdate");
 	}
 	
 	@RequestMapping(value = "/userAddressUpdates/{id}", method = RequestMethod.POST)
-	public String addressEditUpdate(Adress vw, HttpServletRequest req,@PathVariable int id) {
+	public String campaignEditUpdate(Adress vw, HttpServletRequest req,@PathVariable int id) {
 		Session sesi = sf.openSession();
 		Transaction tr = sesi.beginTransaction();
 		vw.getAdressid();
@@ -170,7 +291,7 @@ public class UserAdressController {
 		sesi.update(vw);
 		tr.commit();
 		sesi.close();
+		System.out.println("update geldim");
 		return "redirect:/" +Utils.loginControl(req, "admin/useraddress");
 	}
-	
 }

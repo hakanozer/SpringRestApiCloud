@@ -46,8 +46,8 @@ public class SampleController {
 		for (Sample item : ls) {
 			String rw = "<tr  role=\"sil\" id=\""+item.getSid()+"\">\r\n" + 
 					"													<td>"+item.getSid()+"</td>\r\n" + 
-					"													<td>John Doe</td>\r\n" + 
-					"													<td>11-7-2014</td>\r\n" + 
+					"													<td>"+item.getStitle()+"</td>\r\n" + 
+					"													<td>"+item.getSdesc() +"</td>\r\n" + 
 					"													<td><span class=\"label label-success\">Approved</span></td>\r\n" + 
 					"													<td>\r\n" + 
 					"														<button onclick=\"fncDelete("+item.getSid()+", 'sid' ,'sample')\" type=\"button\" class=\"btn btn-danger btn-sm\">Sil</button>\r\n" + 
@@ -79,6 +79,63 @@ public class SampleController {
 		public String sampleAdd() {
 			return "admin/sampleAdd";
 		}
+		
+		// Arama Ýþlemi
+		int boyut1=0;
+		@ResponseBody
+		@RequestMapping(value = "/ajaxSampleSearch", method = RequestMethod.POST)
+		public String ajaxSampleSearch(@RequestParam String ara,@RequestParam int itemCount) {
+			Session sesi = sf.openSession();
+			StringBuilder bl = new StringBuilder();
+			@SuppressWarnings("unchecked")
+			List<Sample> ls = sesi.createQuery("from Sample  where stitle='"+ara+"' or sdesc ='"+ara+"'").setFirstResult((itemCount -1)  * 10).setMaxResults(10).list();
+			boyut1=ls.size();
+			for (Sample item : ls) {
+				String rw = "<tr  role=\"sil\" id=\""+item.getSid()+"\">\r\n" + 
+						"													<td>"+item.getSid()+"</td>\r\n" + 
+						"													<td>"+item.getStitle() +"</td>\r\n" + 
+						"													<td>"+item.getSdesc() +"</td>\r\n" + 
+						"													<td><span class=\"label label-success\">Approved</span></td>\r\n" + 
+						"													<td>\r\n" + 
+						"														<button onclick=\"fncDelete("+item.getSid()+", 'sid' ,'sample')\" type=\"button\" class=\"btn btn-danger btn-sm\">Sil</button>\r\n" + 
+						"														<button type=\"button\" class=\"btn btn-primary btn-sm\">Düzenle</button>\r\n" + 
+						"													</td>\r\n" + 
+						"												</tr>";
+				bl.append(rw);
+				
+			}
+			
+         
+			sesi.close();
+			return bl.toString();
+		}
+		
+		
+		// Arama Ýþlemi ajaxPageCount
+			@ResponseBody
+			@RequestMapping(value = "/ajaxPageCountSearch", method = RequestMethod.POST)
+			public String ajaxPageCountSearch(@RequestParam String ara) {
+				StringBuilder bl = new StringBuilder();
+				Session sesi = sf.openSession();
+				@SuppressWarnings("unchecked")
+				List<Sample> ls = sesi.createQuery("from Sample  where stitle='"+ara+"' or sdesc ='"+ara+"'").list();
+				int sayi = ls.size();
+				int boyut=0;
+				if(sayi%10==0)
+				{
+					boyut=sayi/10;
+					System.out.println(boyut);
+				}
+				else
+				{
+					boyut=(sayi/10)+1;
+					System.out.println(boyut);
+				}
+				for(int i = 1; i<=boyut; i++) {
+					bl.append("<li><a style=\"cursor: pointer;\" onclick=\"pageSearch("+i+")\">"+i+"</a></li>");
+				}
+				return bl.toString();
+			}
 		
 		
 }
