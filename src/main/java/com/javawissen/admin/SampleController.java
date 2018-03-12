@@ -51,7 +51,7 @@ public class SampleController {
 					"													<td><span class=\"label label-success\">Approved</span></td>\r\n" + 
 					"													<td>\r\n" + 
 					"														<button onclick=\"fncDelete("+item.getSid()+", 'sid' ,'sample')\" type=\"button\" class=\"btn btn-danger btn-sm\">Sil</button>\r\n" + 
-					"														<button type=\"button\" class=\"btn btn-primary btn-sm\">Düzenle</button>\r\n" + 
+					"														<button type=\"button\" class=\"btn btn-primary btn-sm\">Duzenle</button>\r\n" + 
 					"													</td>\r\n" + 
 					"												</tr>";
 			bl.append(rw);
@@ -80,7 +80,7 @@ public class SampleController {
 			return "admin/sampleAdd";
 		}
 		
-		// Arama Ýþlemi
+		// Arama ï¿½ï¿½lemi
 		int boyut1=0;
 		@ResponseBody
 		@RequestMapping(value = "/ajaxSampleSearch", method = RequestMethod.POST)
@@ -98,7 +98,7 @@ public class SampleController {
 						"													<td><span class=\"label label-success\">Approved</span></td>\r\n" + 
 						"													<td>\r\n" + 
 						"														<button onclick=\"fncDelete("+item.getSid()+", 'sid' ,'sample')\" type=\"button\" class=\"btn btn-danger btn-sm\">Sil</button>\r\n" + 
-						"														<button type=\"button\" class=\"btn btn-primary btn-sm\">Düzenle</button>\r\n" + 
+						"														<button type=\"button\" class=\"btn btn-primary btn-sm\">Dï¿½zenle</button>\r\n" + 
 						"													</td>\r\n" + 
 						"												</tr>";
 				bl.append(rw);
@@ -111,7 +111,7 @@ public class SampleController {
 		}
 		
 		
-		// Arama Ýþlemi ajaxPageCount
+		// Arama ï¿½ï¿½lemi ajaxPageCount
 			@ResponseBody
 			@RequestMapping(value = "/ajaxPageCountSearch", method = RequestMethod.POST)
 			public String ajaxPageCountSearch(@RequestParam String ara) {
