@@ -42,6 +42,80 @@ public class ProductApi {
 	*/
 	
 	DB db=new DB("jsoncloud","root","");
+	
+	@RequestMapping(value = "/products", method = RequestMethod.GET)
+	public HashMap<String, Object> allProducts() {
+		
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		List<jsonproducts> ls = new ArrayList<jsonproducts>();
+		try {
+			String q = "{call productsimage()}";
+			ResultSet rs = db.baglan().executeQuery(q);
+			while (rs.next()) {
+				jsonproducts prd = new jsonproducts();
+		       
+				prd.setCampaigntitle(rs.getString("campaigntitle"));
+				prd.setCategorytitle(rs.getString("categorytitle"));
+				prd.setCompanyname(rs.getString("companyname"));
+				prd.setProductdescription(rs.getString("productdescription"));
+				prd.setProductdetail(rs.getString("productdetail"));
+				prd.setProductprice(rs.getBigDecimal("productprice"));
+				prd.setProducttitle(rs.getString("producttitle"));
+				prd.setProducttype(rs.getString("producttype"));
+				
+				
+				if(rs.getString("newFilename")!=null)
+				{
+				prd.setNewFilename(rs.getString("newFilename"));
+				prd.setThumbnailFilename(rs.getString("thumbnailFilename"));
+				prd.setImage("true");
+				}
+				else
+				{
+					
+					prd.setImage("false");
+				}
+				
+				
+				ls.add(prd);
+			}
+			
+			String qq = "{call productswithoutimage()}";
+			ResultSet rss = db.baglan().executeQuery(qq);
+			while (rss.next()) {
+				jsonproducts prd = new jsonproducts();
+		       
+				prd.setCampaigntitle(rss.getString("campaigntitle"));
+				prd.setCategorytitle(rss.getString("categorytitle"));
+				prd.setCompanyname(rss.getString("companyname"));
+				prd.setProductdescription(rss.getString("productdescription"));
+				prd.setProductdetail(rss.getString("productdetail"));
+				prd.setProductprice(rss.getBigDecimal("productprice"));
+				prd.setProducttitle(rss.getString("producttitle"));
+				prd.setProducttype(rss.getString("producttype"));
+				prd.setImage("false");
+				
+				
+				
+				ls.add(prd);
+			}
+			
+			hm.put("durum", true);
+			hm.put("mesaj", "products tablosu getirme basarili");
+			hm.put("products", ls);
+		} catch (Exception e) {
+			hm.put("durum", false);
+			hm.put("mesaj", "products tablosu getirme basarisiz");
+			System.err.println("HATA:" + e);
+		
+		}
+		return hm;
+
+	}
+	
+}
+
+
 	@RequestMapping(value = "/{id}/products", method = RequestMethod.GET)
 	public HashMap<String, Object> Products(@PathVariable Integer id) {
 		
