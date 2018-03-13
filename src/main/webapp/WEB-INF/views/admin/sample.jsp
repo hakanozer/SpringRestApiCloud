@@ -40,14 +40,14 @@
 
 								<div class="box-tools">
 									<div class="input-group input-group-sm" style="width: 150px;">
-										<input id="ara" name="ara" type="text" name="table_search"
+										<input type="text" name="table_search"
 											class="form-control pull-right" placeholder="Search">
 
-									<div class="input-group-btn">
-			                          <button  onclick="pageSearch('0')" type="submit" class="btn btn-default">
-			                          <i class="fa fa-search"></i>
-				                      </button>
-	                                       </div>
+										<div class="input-group-btn">
+											<button type="submit" class="btn btn-default">
+												<i class="fa fa-search"></i>
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -68,8 +68,8 @@
 											<c:forEach items="${ ls }" var="item">
 												<tr id="${ item.getSid() }" role="sil">
 													<td>${ item.getSid() }</td>
-													<td>${ item.getStitle() }</td>
-													<td>${ item.getSdesc()}</td>
+													<td>John Doe</td>
+													<td>11-7-2014</td>
 													<td><span class="label label-success">Approved</span></td>
 													<td>
 														<button onclick="fncDelete(${ item.getSid() }, 'sid' ,'sample')" type="button" class="btn btn-danger btn-sm">Sil</button>

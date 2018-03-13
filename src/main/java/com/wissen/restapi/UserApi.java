@@ -1,28 +1,27 @@
 package com.wissen.restapi;
 
-
-import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import Utils.DB;
-import Utils.HibernateUtil;
-
-// Router operation
-@Controller
-@RequestMapping(value = "/usersapi")
 public class UserApi {
-DB db=new DB();
-
-SessionFactory sf = HibernateUtil.getSessionFactory();
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String Usersapi(Model model) {
-
-		return "usersapi";
-	}
-
 	
+	/* 
+	Görev Alan Kiþiler: Ýsmail & Mustafa
+	statu: fail, true,
+	message: "",
+	 1- Kullanici giriþi
+	 Ýstenen Parametreler : Mail Adresi, Þifre
+	 Geri Dönüþ Deðeleri:
+	 Deðerler boþsa:fail,
+	 Kullanýcý bilgileri hatalý ise: fail, 
+	 Giriþ Baþarýlý ise:
+	 veritabanýndaki þifre hariç herþeyi dön
+	 
+	 2- Kullanýcý kayýt
+	 Ýstenen Parametreler :veritabanýndaki tüm deðerleri al
+	 Kayýt baþarýlý ise : id dönder.
+	 
+	 3- Kullanýcý Ayarlar
+	 Ýstenen Parametreler : Kullanýcý id'si
+	 Genel Ayar deðiþikliði: Þifre dýþýndaki tüm bilgilerini deðiþtir.
+	 Þifre Deðiþikliði: 
+	 */
 
 }
