@@ -42,14 +42,13 @@ public class ProductApi {
 	*/
 	
 	DB db=new DB("jsoncloud","root","");
-	
-	@RequestMapping(value = "/products", method = RequestMethod.GET)
-	public HashMap<String, Object> allProducts() {
+	@RequestMapping(value = "/{id}/products", method = RequestMethod.GET)
+	public HashMap<String, Object> Products(@PathVariable Integer id) {
 		
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		List<jsonproducts> ls = new ArrayList<jsonproducts>();
 		try {
-			String q = "{call productsimage()}";
+			String q = "{call jsoncategoryimageproduct('"+id+"')}";
 			ResultSet rs = db.baglan().executeQuery(q);
 			while (rs.next()) {
 				jsonproducts prd = new jsonproducts();
@@ -80,7 +79,7 @@ public class ProductApi {
 				ls.add(prd);
 			}
 			
-			String qq = "{call productswithoutimage()}";
+			String qq = "{call jsoncategoryproduct('"+id+"')}";
 			ResultSet rss = db.baglan().executeQuery(qq);
 			while (rss.next()) {
 				jsonproducts prd = new jsonproducts();
@@ -110,6 +109,8 @@ public class ProductApi {
 		
 		}
 		return hm;
+
+	
 
 	}
 	

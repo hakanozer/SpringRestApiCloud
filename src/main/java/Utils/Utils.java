@@ -27,6 +27,22 @@ public class Utils {
 		return pageCount;
 	}
 
+	
+	public static Long rowCount(String tableName,int condition) {
+		Session sesi = HibernateUtil.getSessionFactory().openSession();
+		Long  rowCount = (Long) sesi.createQuery("select count(*) from "+tableName+" where ordercustomerid=:customerid")
+				.setParameter("customerid", condition).uniqueResult(); 
+		//System.out.println("rowCount" + rowCount);
+		@SuppressWarnings("unused")
+		Long pageCount = 0L;
+		if (rowCount % 10 == 0) {
+			pageCount = rowCount / 10;
+		}else {
+			pageCount = (rowCount / 10) + 1;
+		}
+		sesi.close();
+		return pageCount;
+	}
 	public static String loginControl(HttpServletRequest req, String sayfa) {
 
 		// çerez var mý ?
