@@ -249,11 +249,16 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+              <div class="row">
+                <div class="col-sm-4 float-left" >
+                  <a href='<s:url value="/admin/profile"></s:url>' class="btn btn-default btn-flat">Profile</a>
                 </div>
-                <div class="pull-right">
+                <div class="col-sm-4 float-left" >
+                  <a href='<s:url value="/admin/settings"></s:url>' class="btn btn-default btn-flat">Settings</a>
+                </div>
+                <div class="col-sm-4 float-left" >
                   <a href='<s:url value="/admin/exit"></s:url>' class="btn btn-default btn-flat">Sign out</a>
+                </div>
                 </div>
               </li>
             </ul>
