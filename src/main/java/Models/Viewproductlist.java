@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package Models;
 
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 function pageOpen(itemCount) {
 		$.ajax({
 			url : '/jsoncloud/admin/ajaxOrderPage',
@@ -332,6 +332,80 @@ function fncShoppingCart() {
 	
 		
 }
+function fncShoppingOrdersCart(id) {
+		window.location.href = 'http://localhost:8080/jsoncloud/admin/shoppingCartOrder/'+id;
+	
+	
+}
+//productAzalt
+function azalt(id,productcount){
+	if(productcount==1){
+		var yanit = confirm("Are you sure you want to delete?");
+		if(yanit == true) {
+		
+			$.ajax({
+			
+			url : '/jsoncloud/admin/productRemove',
+			type : 'POST',
+			data : { 'bid' : id },
+			success : function(gelen) {
+				if(gelen =="") {
+					alert("Silme Başarısız Oldu");
+				}else {
+					alert("silme basarili")
+					
+					$('tr#'+id).fadeOut();
+					$('#total').html(gelen);
+				}
+			}
+		});
+		}
+		
+	}
+	else{
+		sil(id);
+	}
+}
+function sil(bid){
+	alert("duzenle eksilt")
+	$.ajax({
+		url : '/jsoncloud/admin/productRemoveFromBasket',
+		type : 'POST',
+		data : {'bid': bid,
+			'count' : -1},
+		success : function(gelen) {
+			if(gelen =="") {
+				alert("ürün ekleme hatasi");
+			}else {
+				alert("Azaltma basarili");
+				
+				$('tr#rows1').html(gelen);
+				
+			}
+		}
+	});
+}
+
+function arttir(id){
+	alert("duzenle arttır")
+	$.ajax({
+		url : '/jsoncloud/admin/productRemoveFromBasket1',
+		type : 'POST',
+		data : {'bid': bid,
+			'count' : 1},
+		success : function(gelen) {
+			if(gelen =="") {
+				alert("Ekleme Başarısız Oldu");
+			}else {
+				alert("Ekleme basarili");
+				
+				$('tr#rows1').html(gelen);
+				ShoppingCartAdd(id,1);
+				
+			}
+		}
+	});
+}
 
 function ProductCartRemove(id){
 	var yanit = confirm("Are you sure you want to delete?");
@@ -412,4 +486,3 @@ function fncStatusChange(orderId) {
 	});
 }
 
->>>>>>> 2f476fb85f7ae94701fc8fa3947a155931dcad2a
