@@ -171,7 +171,7 @@
 							<!-- /.box-body -->
 							<div class="box-footer">
 								<button type="reset" class="btn btn-default">Reset</button>
-								<%-- <input type="submit" class="form-control" value="Save" />--%>
+								<div id=error></div>
 								<button class="btn btn-info pull-right" id="btnadd">Save
 								</button>
 							</div>

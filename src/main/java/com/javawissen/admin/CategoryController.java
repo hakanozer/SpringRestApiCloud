@@ -79,6 +79,11 @@ public class CategoryController {
 	public String addingCategory(Category ct,HttpServletRequest req ) {
 		System.out.println("addingCategory");
 		try {
+			if (ct.getCategorytitle().equals("") || ct.getCategorydescription().equals("")|| ct.getCategorysort().equals("")) {
+			
+				return "";
+				
+			}else {
 			Session sesi = sf.openSession();
 			
 			Transaction tr = sesi.beginTransaction();
@@ -96,6 +101,7 @@ public class CategoryController {
 			sesi.close();
 			String data = "<option value=\""+ct.getCategoryid()+"\">"+ct.getCategorytitle()+"</option>";
 			return data;
+			}
 		} catch (Exception e) {
 			System.err.println(e);
 		}
