@@ -80,12 +80,8 @@
 															
 															<option value="0">Main Category</option>
 															<c:forEach var="item" items="${ showCategory }">
-																<c:if test="${ kl.getCategoryparentid() == item.getCategoryid() }">
-																<option value="${ kl.getCategoryid() }" selected>${ item.getCategorytitle() }</option>
-																</c:if>
-																<c:if test="${ kl.getCategoryparentid() != item.getCategoryid() }">
-																<option value="${ kl.getCategoryid() }" >${ item.getCategorytitle() }</option>
-																</c:if>
+																<c:if test="${ kl.getCategoryparentid() == item.getCategoryid() }"><option value="${ kl.getCategoryid() }" selected>${ kl.getCategorytitle() }</option></c:if>
+																
 																
 
 															</c:forEach>
@@ -174,8 +170,8 @@
 							</c:if>
 							<!-- /.box-body -->
 							<div class="box-footer">
-								<button class="btn btn-default" id="btnreset">Reset</button>
-								<%-- <input type="submit" class="form-control" value="Save" />--%>
+								<button type="reset" class="btn btn-default">Reset</button>
+								<div id=error></div>
 								<button class="btn btn-info pull-right" id="btnadd">Save
 								</button>
 							</div>
