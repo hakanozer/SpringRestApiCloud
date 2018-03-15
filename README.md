@@ -1,4 +1,4 @@
-#Spring MVC With RestApi Cloud
+# Spring MVC With RestApi Cloud
 <p>Bu proje, Spring MVC ve Hibernate teknolojilerini kullanılarak, bir işletmenin dinamik admin paneli üzerinden yönetim sağlayarak RestApi servisleri üretmesini sağlar. Bu sayede işletme farklı bir yazılım gereksinimi duymadan Mobile yada farklı cihazlarda işletmesine ait bilgilerin dağıtılmasını tam güvenli olarak sağlar.
   
 Projede veritabanı olarak MYSQL kullanılmıştır, uygulama öncesinde veritabanı kurulmamış olsa bile veritabanı yaratılır ve böylelikle kullanım ve kurulum hızı artılmayı hedeflenmiştir. 
