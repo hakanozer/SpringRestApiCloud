@@ -17,3 +17,14 @@ Uygulama tüm işletmelere hitap edecek şekilde dizayn edilmiştir. Her işletm
 
 <a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/3.png" target="_blank">
 <img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/3.png" width="200" style="max-width:100%;"></a>
+
+<p>
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/User%20Address%20List.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/User%20Address%20List.PNG" width="200" style="max-width:100%;"></a>
+
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/User%20Address%20Save.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/User%20Address%20Save.PNG" width="200" style="max-width:100%;"></a>
+
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/User%20Address%20Edit.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/User%20Address%20Edit.PNG" width="200" style="max-width:100%;"></a>
+
