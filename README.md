@@ -28,3 +28,32 @@ Uygulama tüm işletmelere hitap edecek şekilde dizayn edilmiştir. Her işletm
 <a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/User%20Address%20Edit.PNG" target="_blank">
 <img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/User%20Address%20Edit.PNG" width="200" style="max-width:100%;"></a>
 
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/r1.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/r1.PNG" width="200" style="max-width:100%;"></a>
+
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/r2.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/r2.PNG" width="200" style="max-width:100%;"></a>
+
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/r3.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/r3.PNG" width="200" style="max-width:100%;"></a>
+
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/p1.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/p1.PNG" width="200" style="max-width:100%;"></a>
+
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/e1.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/e1.PNG" width="200" style="max-width:100%;"></a>
+
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/e2.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/e2.PNG" width="200" style="max-width:100%;"></a>
+
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/s1.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/s1.PNG" width="200" style="max-width:100%;"></a>
+
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/r1.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/r1.PNG" width="200" style="max-width:100%;"></a>
+
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/i1.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/i1.PNG" width="200" style="max-width:100%;"></a>
+
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/rst1.PNG" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/rst1.PNG" width="200" style="max-width:100%;"></a>
