@@ -47,6 +47,27 @@ public class ordersApi {
 		}
 		return hm;
 }
+
+
+@RequestMapping(value = "/orderManagement/3", method = RequestMethod.GET)
+	public HashMap<String, Object> allOrder() {
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		try {
+			Session sesi=sf.openSession();
+			@SuppressWarnings("unchecked")
+			List<Vieworderlist> orderLs=sesi.createQuery("from Vieworderlist").getResultList();
+	
+			sesi.close();
+			hm.put("durum", true);
+			hm.put("mesaj", "order tablosu getirme basarili");
+			hm.put("orderlist", orderLs);
+		} catch (Exception e) {
+			hm.put("durum", false);
+			hm.put("mesaj", "order tablosu getirme basarisiz");
+			System.err.println("HATA:" + e);
+		}
+		return hm;
+}
 	
 	@RequestMapping(value = "/productRemove/{basketid}", method = RequestMethod.GET)
 	public HashMap<String, Object> productRemove(@PathVariable int basketid) {
