@@ -34,7 +34,7 @@ public class ProductController {
 	SessionFactory sf = HibernateUtil.getSessionFactory();
 @RequestMapping(value = "/product", method = RequestMethod.GET)
 	public String ornekAc(HttpServletRequest req, Model model) {
-		String companyid=(String) req.getSession().getAttribute("companyid");
+		int companyid=(int) req.getSession().getAttribute("companyid");
 		System.out.println(companyid);
 		Session sesi = sf.openSession();
 		@SuppressWarnings("unchecked")
@@ -163,7 +163,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/productAdd", method = RequestMethod.GET)
 	public String productAdd(HttpServletRequest req,Model model) {
-		String companyid=(String) req.getSession().getAttribute("companyid");
+		int companyid= (int) req.getSession().getAttribute("companyid");
 		System.out.println(companyid+" þirket");
 		Session sesi = sf.openSession();
 		@SuppressWarnings("unchecked")
