@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import Models.Basket;
-import Models.Customer;
+import Models.Customers;
 import Models.Viewproductlist;
 import Utils.HibernateUtil;
 import Utils.Utils;
@@ -59,7 +59,7 @@ public class OrdersController {
 		int companyid = (Integer) req.getSession().getAttribute("companyid");
 		Session sesi2 = sf.openSession();
 		@SuppressWarnings("unchecked")
-		List<Customer> customerLs = sesi2.createQuery("from Customer where customercompanyid =:companyid ")
+		List<Customers> customerLs = sesi2.createQuery("from Customer where customercompanyid =:companyid ")
 				.setParameter("companyid", companyid).getResultList();
 		model.addAttribute("customer", customerLs);
 		sesi2.close();

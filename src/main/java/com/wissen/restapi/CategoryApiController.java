@@ -31,7 +31,7 @@ public class CategoryApiController {
 				setParameter("kid",req.getSession().getAttribute("kid") ).getSingleResult();
 		HashMap<String, Object>hm=new HashMap<String, Object>();
 		try {
-			List<Category>Cls= sesi.createQuery("from Category where categorycompanyid = :catid").setParameter("catid",Integer.parseInt(admin.getAcompanyid())  )
+			List<Category>Cls= sesi.createQuery("from Category where categorycompanyid = :catid").setParameter("catid",(admin.getAcompanyid())  )
 					.list();
 			List<Category> ls = new ArrayList<Category>();
 			for (Category item : Cls) {

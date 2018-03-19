@@ -205,7 +205,7 @@ function fncStatusChange(orderId) {
 	});
 }
 
-=======
+
 function pageOpen(itemCount) {
 		$.ajax({
 			url : '/jsoncloud/admin/ajaxOrderPage',

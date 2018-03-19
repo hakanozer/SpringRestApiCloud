@@ -40,7 +40,7 @@ public class CategoryController {
 				setParameter("kid",req.getSession().getAttribute("kid") ).getSingleResult();
 		
 		@SuppressWarnings("unchecked")
-		List<Category> Cls = sesi.createQuery("from Category where categorycompanyid = :catid").setParameter("catid",Integer.parseInt(admin.getAcompanyid())  )
+		List<Category> Cls = sesi.createQuery("from Category where categorycompanyid = :catid").setParameter("catid",(admin.getAcompanyid())  )
 				.list();
 		
 		List<Category> ls = new ArrayList<Category>();
@@ -91,7 +91,7 @@ public class CategoryController {
 			Admins admin = (Admins) sesi.createQuery("from Admins a where a.aid = :kid").
 					setParameter("kid",req.getSession().getAttribute("kid") ).getSingleResult();
 			
-			ct.setCategorycompanyid( Integer.parseInt(admin.getAcompanyid()) );//session dan alýnacak.req.getsession.getattribute bu kodla
+			ct.setCategorycompanyid((admin.getAcompanyid()) );//session dan alýnacak.req.getsession.getattribute bu kodla
 			ct.setCategorylink(categoryLinkEdit(ct.getCategorytitle()));
 			if (ct.getCategoryparentid() == 0) {
 				ct.setCategoryparentid(0);

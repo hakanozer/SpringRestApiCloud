@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import Models.Adress;
 import Models.City;
-import Models.Customer;
+import Models.Customers;
 import Models.Neighborhood;
 import Models.Street;
 import Models.Town;
@@ -94,7 +94,7 @@ public class UserAdressController {
 //Sesi ile customer name ve surnamei getir
 	@ResponseBody
 	@RequestMapping(value = "/ajaxAddressSearch", method = RequestMethod.POST,produces = "text/html;charset=utf-8")
-	public String ajaxAddressSearch(Customer cr,@RequestParam String ara, @RequestParam int itemCount) {
+	public String ajaxAddressSearch(Customers cr,@RequestParam String ara, @RequestParam int itemCount) {
 		Session sesi = sf.openSession();
 		StringBuilder bl = new StringBuilder();
 		ara="%"+ara+"%";
@@ -154,7 +154,7 @@ public class UserAdressController {
 	public String userAddressAdd(Model model, HttpServletRequest req) {
 
 		List<City> cityLs = cityFill();
-		List<Customer> userLs = userFill();
+		List<Customers> userLs = userFill();
 		model.addAttribute("cityLs", cityLs);
 		model.addAttribute("userLs", userLs);
 		boolean error = req.getSession().getAttribute("error") != null;
@@ -251,8 +251,8 @@ public class UserAdressController {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Customer> userFill() {
-		List<Customer> userLs = new ArrayList<Customer>();
+	public List<Customers> userFill() {
+		List<Customers> userLs = new ArrayList<Customers>();
 		Session sesi = sf.openSession();
 		Transaction tr = sesi.beginTransaction();
 		userLs = sesi.createQuery("from Customer").list();

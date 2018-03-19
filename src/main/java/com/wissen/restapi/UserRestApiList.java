@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import Models.Customer;
+import Models.Customers;
 import Utils.HibernateUtil;
 
 @RestController
@@ -26,7 +26,7 @@ public class UserRestApiList {
 
 		Session sesi = sf.openSession();
 		@SuppressWarnings("unchecked")
-		List<Customer> cls = sesi
+		List<Customers> cls = sesi
 				.createQuery("from Customer where customermail='" + cmail + "'and customerpassword='" + cpassword + "'")
 				.list();
 		if (!cls.isEmpty()) {

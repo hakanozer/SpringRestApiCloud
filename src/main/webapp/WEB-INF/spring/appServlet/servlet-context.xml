@@ -23,11 +23,11 @@
 	
 	<context:component-scan base-package="com.javawissen.jsoncloud" />
 	<context:component-scan base-package="com.javawissen.admin" />
-<<<<<<< HEAD
+
 	<context:component-scan base-package="com.wissen.restapi" />
-=======
+
 		<context:component-scan base-package="com.java.restapi" />
->>>>>>> 2f476fb85f7ae94701fc8fa3947a155931dcad2a
+
 	
 	
 </beans:beans>

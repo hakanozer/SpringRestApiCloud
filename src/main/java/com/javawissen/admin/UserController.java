@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import Models.Customer;
+import Models.Customers;
 import Models.Sample;
 import Models.Viewcustomercompany;
 import Utils.HibernateUtil;
@@ -29,7 +29,7 @@ public class UserController {
 	public String ornekAc(HttpServletRequest req, Model model) {
 		Session sesi = sf.openSession();
 		@SuppressWarnings("unchecked")
-		List<Customer> liste = sesi.createQuery("from Customer order by customerid desc").setMaxResults(10).list();
+		List<Customers> liste = sesi.createQuery("from Customer order by customerid desc").setMaxResults(10).list();
 		// model.addAttribute("pageCount", Utils.rowCount("Sample"));
 		model.addAttribute("liste", liste);
 		sesi.close();
@@ -43,9 +43,9 @@ public class UserController {
 		Session sesi = sf.openSession();
 		StringBuilder bl = new StringBuilder();
 		@SuppressWarnings("unchecked")
-		List<Customer> ls = sesi.createQuery("from Customer order by customerid desc")
+		List<Customers> ls = sesi.createQuery("from Customer order by customerid desc")
 				.setFirstResult((itemCount - 1) * 10).setMaxResults(10).list();
-		for (Customer item : ls) {
+		for (Customers item : ls) {
 			String rw = "<tr  role=\"sil\" id=\"" + item.getCustomerid() + "\">\r\n"
 					+ "													<td>" + item.getCustomerid() + "</td>\r\n"
 					+ "													<td>" + item.getCustomername() + "</td>\r\n"
@@ -99,7 +99,7 @@ public class UserController {
 	@RequestMapping(value = "/usersEdit/{id}", method = RequestMethod.POST)
 	public String usersEdit(@PathVariable Integer id, Model model, @RequestParam String customermail,
 			@RequestParam String customername, @RequestParam String customersurname, HttpServletRequest req,
-			Customer cst, @RequestParam String customerphone, @RequestParam Integer customercompanyid) {
+			Customers cst, @RequestParam String customerphone, @RequestParam Integer customercompanyid) {
 
 		Session sesi = sf.openSession();
 		Transaction tr = sesi.beginTransaction();
@@ -138,7 +138,7 @@ public class UserController {
 	// Users Add
 		@ResponseBody
 		@RequestMapping(value = "/usersAdd", method = RequestMethod.POST)
-		public String usersAdd(Model model, Customer ct, @RequestParam String customerpassword1) {
+		public String usersAdd(Model model, Customers ct, @RequestParam String customerpassword1) {
 			String data = "";
 		
 			if (ct.getCustomername().equals("") || ct.getCustomersurname().equals("") || ct.getCustomermail().equals("")
@@ -191,7 +191,7 @@ public class UserController {
 		public String usersPassword(@PathVariable Integer id, Model model, @RequestParam String customermail,
 				@RequestParam String customername, @RequestParam String customersurname, @RequestParam String npassword,
 				@RequestParam String customerphone, @RequestParam Integer customercompanyid,
-				@RequestParam String nnpassword, HttpServletRequest req, Customer cst) {
+				@RequestParam String nnpassword, HttpServletRequest req, Customers cst) {
 
 			
 
@@ -239,11 +239,11 @@ public class UserController {
 		Session sesi = sf.openSession();
 		StringBuilder bl = new StringBuilder();
 		@SuppressWarnings("unchecked")
-		List<Customer> liste = sesi
+		List<Customers> liste = sesi
 				.createQuery("from Customer  where customername='" + ara + "' or customersurname ='" + ara + "'")
 				.setFirstResult((itemCount - 1) * 10).setMaxResults(10).list();
 		boyut1 = liste.size();
-		for (Customer item : liste) {
+		for (Customers item : liste) {
 			String rw = "<tr  role=\"sil\" id=\"" + item.getCustomerid() + "\">\r\n"
 					+ "													<td>" + item.getCustomerid() + "</td>\r\n"
 					+ "													<td>" + item.getCustomername() + "</td>\r\n"

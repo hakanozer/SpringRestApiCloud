@@ -12,29 +12,22 @@ import javax.persistence.*;
 @NamedQuery(name="Viewcompany.findAll", query="SELECT v FROM Viewcompany v")
 public class Viewcompany implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer companyid;
-
-	public Integer getCompanyid() {
-		return companyid;
-	}
-
-
-
-
-	public void setCompanyid(Integer companyid) {
-		this.companyid = companyid;
-	}
+	private int companyid;
 
 	private String companyname;
 
 	public Viewcompany() {
 	}
 
+	public int getCompanyid() {
+		return this.companyid;
+	}
 
-	
+	public void setCompanyid(int companyid) {
+		this.companyid = companyid;
+	}
 
 	public String getCompanyname() {
 		return this.companyname;

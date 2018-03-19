@@ -2,22 +2,29 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="JsonCloud">
 		<class>Models.Admins</class>
-		<class>Models.Sample</class>
-<<<<<<< HEAD
-		<class>Models.Customer</class>
-		<class>Models.Viewcustomercompany</class>
-		<class>Models.Companies</class>
-=======
-		<class>Models.City</class>
-		<class>Models.Neighborhood</class>
-		<class>Models.Town</class>
 		<class>Models.Adress</class>
-		<class>Models.Street</class>
-		<class>Models.Customer</class>
-		<class>Models.Viewaddress</class>
-		<class>Models.Viewcustomercompany</class>
-		<class>Models.Viewcompany</class>
+		<class>Models.Basket</class>
+		<class>Models.Campaigns</class>
+		<class>Models.Category</class>
+		<class>Models.City</class>
 		<class>Models.Companies</class>
->>>>>>> 2f476fb85f7ae94701fc8fa3947a155931dcad2a
+		<class>Models.Companyimage</class>
+		<class>Models.Customers</class>
+		<class>Models.Neighborhood</class>
+		<class>Models.Orders</class>
+		<class>Models.Products</class>
+		<class>Models.Productsview</class>
+		<class>Models.Sample</class>
+		<class>Models.Street</class>
+		<class>Models.Town</class>
+		<class>Models.ViewCompaniesAdress</class>
+		<class>Models.Viewaddress</class>
+		<class>Models.Viewbasketlist</class>
+		<class>Models.Vieworderlist</class>
+		<class>Models.Viewproductlist</class>
+		<class>Models.Viewcompany</class>
+		<class>Models.Viewcustomercompany</class>
+		<class>com.javawissen.imageupload.Image</class>
+
 	</persistence-unit>
 </persistence>

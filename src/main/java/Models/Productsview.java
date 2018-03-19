@@ -14,9 +14,6 @@ import java.math.BigDecimal;
 public class Productsview implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private int productid;
-	
 	private String campaigntitle;
 
 	private String categorytitle;
@@ -26,7 +23,9 @@ public class Productsview implements Serializable {
 	private String productdescription;
 
 	private String productdetail;
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int productid;
 
 	private BigDecimal productprice;
 

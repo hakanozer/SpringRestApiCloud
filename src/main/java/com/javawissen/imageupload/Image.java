@@ -16,10 +16,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-/**
- *
- * @author jdmr
- */
+
 @Entity
 @Table(name = "images")
 @NamedQueries({

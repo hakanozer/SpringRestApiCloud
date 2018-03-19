@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import Models.Basket;
-import Models.Order;
+import Models.Orders;
 import Models.Viewbasketlist;
 import Utils.HibernateUtil;
 
@@ -207,7 +207,7 @@ public class ShoppingCartController {
 			for (Viewbasketlist item : basketLs) {
 				Session sesi1 = sf.openSession();
 				Transaction tr = sesi1.beginTransaction();
-				Order or = new Order();
+				Orders or = new Orders();
 				or.setOrdercompanyid(companyid);
 				or.setOrdercustomerid(id);
 				or.setOrderproductids(String.valueOf(item.getProductid()));

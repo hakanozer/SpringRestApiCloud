@@ -28,7 +28,7 @@ import Models.Admins;
 import Models.Adress;
 import Models.City;
 import Models.Companies;
-import Models.Customer;
+import Models.Customers;
 import Models.FileMeta;
 import Utils.HibernateUtil;
 import Utils.Utils;

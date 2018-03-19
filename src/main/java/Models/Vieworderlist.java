@@ -19,15 +19,16 @@ public class Vieworderlist implements Serializable {
 
 	private String customername;
 
-	private Integer ordercompanyid;
+	private int ordercompanyid;
 
 	private String ordercounts;
 
-	private Integer ordercustomerid;
+	private int ordercustomerid;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date orderdate;
-@Id
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int orderid;
 
 	private byte orderstatus;

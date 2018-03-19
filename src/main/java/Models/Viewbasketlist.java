@@ -11,16 +11,16 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="viewbasketlist")
 @NamedQuery(name="Viewbasketlist.findAll", query="SELECT v FROM Viewbasketlist v")
 public class Viewbasketlist implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Integer basketcustomerid;
+	private int basketcustomerid;
 	@Id
-	private Integer basketid;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int basketid;
 
-	private Integer basketproductcount;
+	private int basketproductcount;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date campaignenddate;
@@ -28,17 +28,17 @@ public class Viewbasketlist implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date campaignstartdate;
 
-	private Byte campaignstatu;
+	private byte campaignstatu;
 
 	private String campaigntitle;
 
-	private Integer campaigntolerance;
+	private int campaigntolerance;
 
 	private String categorytitle;
 
 	private String productdetail;
 
-	private Integer productid;
+	private int productid;
 
 	private BigDecimal productprice;
 
@@ -47,27 +47,27 @@ public class Viewbasketlist implements Serializable {
 	public Viewbasketlist() {
 	}
 
-	public Integer getBasketcustomerid() {
+	public int getBasketcustomerid() {
 		return this.basketcustomerid;
 	}
 
-	public void setBasketcustomerid(Integer basketcustomerid) {
+	public void setBasketcustomerid(int basketcustomerid) {
 		this.basketcustomerid = basketcustomerid;
 	}
 
-	public Integer getBasketid() {
+	public int getBasketid() {
 		return this.basketid;
 	}
 
-	public void setBasketid(Integer basketid) {
+	public void setBasketid(int basketid) {
 		this.basketid = basketid;
 	}
 
-	public Integer getBasketproductcount() {
+	public int getBasketproductcount() {
 		return this.basketproductcount;
 	}
 
-	public void setBasketproductcount(Integer basketproductcount) {
+	public void setBasketproductcount(int basketproductcount) {
 		this.basketproductcount = basketproductcount;
 	}
 
@@ -87,11 +87,11 @@ public class Viewbasketlist implements Serializable {
 		this.campaignstartdate = campaignstartdate;
 	}
 
-	public Byte getCampaignstatu() {
+	public byte getCampaignstatu() {
 		return this.campaignstatu;
 	}
 
-	public void setCampaignstatu(Byte campaignstatu) {
+	public void setCampaignstatu(byte campaignstatu) {
 		this.campaignstatu = campaignstatu;
 	}
 
@@ -103,11 +103,11 @@ public class Viewbasketlist implements Serializable {
 		this.campaigntitle = campaigntitle;
 	}
 
-	public Integer getCampaigntolerance() {
+	public int getCampaigntolerance() {
 		return this.campaigntolerance;
 	}
 
-	public void setCampaigntolerance(Integer campaigntolerance) {
+	public void setCampaigntolerance(int campaigntolerance) {
 		this.campaigntolerance = campaigntolerance;
 	}
 
@@ -127,11 +127,11 @@ public class Viewbasketlist implements Serializable {
 		this.productdetail = productdetail;
 	}
 
-	public Integer getProductid() {
+	public int getProductid() {
 		return this.productid;
 	}
 
-	public void setProductid(Integer productid) {
+	public void setProductid(int productid) {
 		this.productid = productid;
 	}
 

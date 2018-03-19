@@ -18,7 +18,8 @@ public class Viewcustomercompany implements Serializable {
 	private String companyapikey;
 
 	private String companyfax;
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int companyid;
 
 	private String companymail;
@@ -28,8 +29,7 @@ public class Viewcustomercompany implements Serializable {
 	private String companyphone;
 
 	private int customercompanyid;
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
 	private int customerid;
 
 	private String customermail;

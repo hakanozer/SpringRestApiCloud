@@ -12,10 +12,12 @@ import javax.persistence.*;
 @NamedQuery(name="Viewaddress.findAll", query="SELECT v FROM Viewaddress v")
 public class Viewaddress implements Serializable {
 	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int adresscompaniesid;
 
 	private String adressdescription;
 
-	@Id
 	private int adressid;
 
 	private String adressinformation;
@@ -45,6 +47,14 @@ public class Viewaddress implements Serializable {
 	private String towntitle;
 
 	public Viewaddress() {
+	}
+
+	public int getAdresscompaniesid() {
+		return this.adresscompaniesid;
+	}
+
+	public void setAdresscompaniesid(int adresscompaniesid) {
+		this.adresscompaniesid = adresscompaniesid;
 	}
 
 	public String getAdressdescription() {
