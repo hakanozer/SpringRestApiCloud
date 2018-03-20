@@ -33,7 +33,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
 @Controller
-@RequestMapping(value = "/admin/imageupload/")
+@RequestMapping(value = "/admin/imageupload")
 @Import(PropertyPlaceholderConfig.class)
 public class ImageController {
     

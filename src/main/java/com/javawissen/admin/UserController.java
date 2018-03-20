@@ -29,7 +29,7 @@ public class UserController {
 	public String ornekAc(HttpServletRequest req, Model model) {
 		Session sesi = sf.openSession();
 		@SuppressWarnings("unchecked")
-		List<Customers> liste = sesi.createQuery("from Customer order by customerid desc").setMaxResults(10).list();
+		List<Customers> liste = sesi.createQuery("from Customers order by customerid desc").setMaxResults(10).list();
 		// model.addAttribute("pageCount", Utils.rowCount("Sample"));
 		model.addAttribute("liste", liste);
 		sesi.close();
@@ -43,7 +43,7 @@ public class UserController {
 		Session sesi = sf.openSession();
 		StringBuilder bl = new StringBuilder();
 		@SuppressWarnings("unchecked")
-		List<Customers> ls = sesi.createQuery("from Customer order by customerid desc")
+		List<Customers> ls = sesi.createQuery("from Customers order by customerid desc")
 				.setFirstResult((itemCount - 1) * 10).setMaxResults(10).list();
 		for (Customers item : ls) {
 			String rw = "<tr  role=\"sil\" id=\"" + item.getCustomerid() + "\">\r\n"
@@ -73,7 +73,7 @@ public class UserController {
 	@RequestMapping(value = "/ajaxCustomerPageCount", method = RequestMethod.POST)
 	public String ajaxCustomerPageCount() {
 		StringBuilder bl = new StringBuilder();
-		Long sayi = Utils.rowCount("Customer");
+		Long sayi = Utils.rowCount("Customers");
 		for (int i = 1; i <= sayi; i++) {
 			bl.append("<li><a style=\"cursor: pointer;\" onclick=\"pageOpen(" + i + ")\">" + i + "</a></li>");
 		}
@@ -276,7 +276,7 @@ public class UserController {
 		Session sesi = sf.openSession();
 		@SuppressWarnings("unchecked")
 		List<Sample> liste = sesi
-				.createQuery("from Customer  where customername='" + ara + "' or customersurname ='" + ara + "'")
+				.createQuery("from Customers  where customername='" + ara + "' or customersurname ='" + ara + "'")
 				.list();
 		int sayi = liste.size();
 		int boyut = 0;

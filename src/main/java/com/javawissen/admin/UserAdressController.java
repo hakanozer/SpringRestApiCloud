@@ -255,7 +255,7 @@ public class UserAdressController {
 		List<Customers> userLs = new ArrayList<Customers>();
 		Session sesi = sf.openSession();
 		Transaction tr = sesi.beginTransaction();
-		userLs = sesi.createQuery("from Customer").list();
+		userLs = sesi.createQuery("from Customers").list();
 		tr.commit();
 		sesi.close();
 		return userLs;

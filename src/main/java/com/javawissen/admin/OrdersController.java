@@ -59,7 +59,7 @@ public class OrdersController {
 		int companyid = (Integer) req.getSession().getAttribute("companyid");
 		Session sesi2 = sf.openSession();
 		@SuppressWarnings("unchecked")
-		List<Customers> customerLs = sesi2.createQuery("from Customer where customercompanyid =:companyid ")
+		List<Customers> customerLs = sesi2.createQuery("from Customers where customercompanyid =:companyid ")
 				.setParameter("companyid", companyid).getResultList();
 		model.addAttribute("customer", customerLs);
 		sesi2.close();

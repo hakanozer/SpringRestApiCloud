@@ -33,6 +33,7 @@ public class ShoppingCartController {
 	@RequestMapping(value = "/shoppingCart/{cid}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String shoppingCart(@PathVariable int cid, Model model) {
 		this.cid = cid;
+		System.out.println("Shoppig carta geldim");
 		System.out.println(cid);
 
 		total = 0;
@@ -257,6 +258,6 @@ public class ShoppingCartController {
 		} catch (Exception e) {
 			System.err.println("Sipariş kaydetme hatası:" + e.getMessage());
 		}
-		return "admin/order";
+		return "redirect:/admin/orderss/"+id;
 	}
 }
