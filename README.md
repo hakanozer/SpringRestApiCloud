@@ -49,8 +49,8 @@ Uygulama tüm işletmelere hitap edecek şekilde dizayn edilmiştir. Her işletm
 <img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/9.png" width="200" style="max-width:100%;"></a>
 
 
-<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/10.png" target="_blank">
-<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/10.png" width="200" style="max-width:100%;"></a>
+<a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/Admin%20Panel%20%20%20Users.png" target="_blank">
+<img src="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/Admin%20Panel%20%20%20Users.png" width="200" style="max-width:100%;"></a>
 
 
 <a href="https://github.com/hakanozer/SpringRestApiCloud/blob/master/ekran_goruntuleri/11.png" target="_blank">
